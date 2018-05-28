@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_135547) do
+ActiveRecord::Schema.define(version: 2018_05_28_141009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attempts", force: :cascade do |t|
+    t.text "player_input"
+    t.text "spec_output"
+    t.string "status"
+    t.bigint "round_id"
+    t.bigint "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_attempts_on_player_id"
+    t.index ["round_id"], name: "index_attempts_on_round_id"
+  end
+
+  create_table "exercices", force: :cascade do |t|
+    t.string "title"
+    t.text "rules"
+    t.text "specs"
+    t.text "solution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "game_masters", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +53,43 @@ ActiveRecord::Schema.define(version: 2018_05_28_135547) do
     t.index ["reset_password_token"], name: "index_game_masters_on_reset_password_token", unique: true
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "wifi_network"
+    t.string "wifi_password"
+    t.bigint "game_master_id"
+    t.datetime "starts_at"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_master_id"], name: "index_games_on_game_master_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "username"
+    t.string "status"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_players_on_game_id"
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.string "state"
+    t.integer "number_of_winners"
+    t.bigint "game_id"
+    t.bigint "exercice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercice_id"], name: "index_rounds_on_exercice_id"
+    t.index ["game_id"], name: "index_rounds_on_game_id"
+  end
+
+  add_foreign_key "attempts", "players"
+  add_foreign_key "attempts", "rounds"
+  add_foreign_key "games", "game_masters"
+  add_foreign_key "players", "games"
+  add_foreign_key "rounds", "exercices"
+  add_foreign_key "rounds", "games"
 end
