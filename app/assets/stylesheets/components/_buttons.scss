@@ -1,0 +1,79 @@
+// Base classes for buttons
+.button {
+  padding: 1rem 4rem;
+  border-radius: 2.5rem;
+  color: white;
+  text-decoration: none;
+  transition: 300ms;
+}
+
+.button:hover, .button:focus, .button:active {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+// Color specific details
+.button-purple {
+  border: solid 2px $purple;
+  background-color: $purple;
+}
+
+.button-purple:hover {
+  color: $purple;
+}
+
+.button-purple:focus, .button-purple:active {
+  box-shadow: 0 0 4px $purple;
+}
+
+.button-green, {
+  border: solid 2px $green;
+  background-color: $green;
+}
+
+.button-green:hover, .button-green:focus, .button-green:active {
+  color: $green;
+}
+
+.button-green:focus, .button-green:active {
+  box-shadow: 0 0 4px $green;
+}
+
+.button-blue {
+  border: solid 2px $blue;
+  background-color: $blue;
+}
+
+.button-blue:hover, .button-blue:focus, .button-blue:active {
+  color: $blue;
+}
+
+.button-blue:focus, .button-blue:active {
+  box-shadow: 0 0 4px $blue;
+}
+
+.button-yellow {
+  border: solid 2px $yellow;
+  background-color: $yellow;
+}
+
+.button-yellow:hover, .button-yellow:focus, .button-yellow:active {
+  color: $yellow;
+}
+
+.button-yellow:focus, .button-yellow:active {
+  box-shadow: 0 0 4px $yellow;
+}
+
+.button-red {
+  border: solid 2px $red;
+  background-color: $red;
+}
+
+.button-red:hover, .button-red:focus, .button-red:active {
+  color: $red;
+}
+
+.button-red:focus, .button-red:active {
+  box-shadow: 0 0 4px $red;
+}
