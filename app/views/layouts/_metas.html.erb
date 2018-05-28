@@ -6,15 +6,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 <!-- Facebook -->
-<meta property="og:title" content="Code & Drink - The game">
-<meta property="og:image" content="codeanddrink.jpg">
-<meta property="og:description" content="Code & Drink is a fun game to play with your friends">
-<meta property="og:site_name" content="Code & Drink"/>
+<meta property="og:title" content="<%= meta_title %>" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:image" content="<%= meta_image %>" />
+<meta property="og:description" content="<%= meta_description %>" />
+<meta property="og:site_name" content="<%= meta_title %>" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@codeanddrinks">
-<meta name="twitter:title" content="Code & Drink - The game">
-<meta name="twitter:description" content="Code & Drink is a fun game to play with your friends">
-<meta name="twitter:creator" content="@codeanddrinks">
-<meta name="twitter:image:src" content="codeanddrink.jpg">
+<meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
+<meta name="twitter:title" content="<%= meta_title %>">
+<meta name="twitter:description" content="<%= meta_description %>">
+<meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
+<meta name="twitter:image:src" content="<%= meta_image %>">
+
+<!-- Title -->
+<title><%= meta_title %></title>
+<meta name="description" content="<%= meta_description %>">
