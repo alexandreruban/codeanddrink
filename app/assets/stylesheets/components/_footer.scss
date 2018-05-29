@@ -1,0 +1,16 @@
+$footer-height: 70px;
+
+footer {
+  background-color: $purple;
+  color: white;
+  height: $footer-height;
+}
+
+.footer-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  p {
+    margin: 0;
+  }
+}
