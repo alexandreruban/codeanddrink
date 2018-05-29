@@ -1,24 +1,45 @@
 <div class="container">
   <div class="main-container">
-
-<h1> Test </h1>
 <!-- div des 2 écran Enocé/Test et code area -->
     <div class="row">
 <!-- div écran Enocé/Test -->
       <div class="col-xs-6">
+<!-- div boutons Enoncé et Test -->
+        <div class="nav nav-tabs tabs">
+          <a class="tab active" href="#rules" aria-controls="rules" role="tab" data-toggle="tab">
+            <h3>Rules</h3>
+          </a>
+          <a class="tab" href="#tests" aria-controls="tests" role="tab" data-toggle="tab">
+            <h3>Test</h3>
+          </a>
         </div>
-
-
-
-
-<!-- div écran code aera -->
-      <div class="col-xs-6">
+<!-- div Fin - boutons Enoncé et Test -->
+<!-- div zone de texte -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="rules" >
+            <p> <%= @exercise.rules %> </p>
+          </div>
+          <div role="tabpanel" class="tab-pane" id ="tests" >
+              <p> <%= @exercise.specs %>  </p>
+          </div>
+        </div>
       </div>
-
+<!-- div Fin - Zone de text-->
+<!-- div écran code area + btn submit et reset -->
+      <div class="col-xs-6">
+<!-- div écran code area -->
+        <div id="codeaera">
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 <!-- div des 2 boutons reset et submit -->
-    <div class="validation">
+<div class="validation">
+  <div class="purple_band">
+    <div class="left">
+    <%= link_to "Reset", "#", class: "button button-red" %>
+    <%= link_to "Submit", "#", class: "button button-green" %>
     </div>
-
   </div>
 </div>
