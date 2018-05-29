@@ -9,6 +9,7 @@
 puts "Destroying previous data..."
 Round.destroy_all
 Exercise.destroy_all
+Player.destroy_all
 Game.destroy_all
 GameMaster.destroy_all
 
@@ -47,14 +48,21 @@ end
 puts "Creating rounds..."
 round_samples = samples["rounds"]
 round_samples.each do |round_sample|
-  round = Round.new
+  round = Round.new(round_sample.slice("number_of_winners"))
   round.game = games[round_sample["game_id"]]
   round.exercise = exercises[round_sample["exercise_id"]]
   round.save!
 end
 
+# Create all players
+puts "Creating players..."
+player_samples = samples["players"]
+player_samples.each do |player_sample|
+  player = Player.new(player_sample.slice("username"))
+  player.game = games[player_sample["game_id"]]
+  player.save!
+end
 
-
-
+puts "Done."
 
 
