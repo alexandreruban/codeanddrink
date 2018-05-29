@@ -1,0 +1,8 @@
+.box-shadow {
+  box-shadow: 0 0 10px $dark-transparent;
+  transition: 300ms;
+}
+
+.box-shadow:hover {
+  box-shadow: 0 0 30px $dark-transparent;
+}
