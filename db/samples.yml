@@ -1,0 +1,47 @@
+game_masters:
+  - id: 0
+    email: "edouardf@lewagon.org"
+    password: "edouardf"
+
+games:
+  - id: 0
+    title: "Let's code and drink!"
+    description: "First code then drink! Whatever..."
+    wifi_network: "Le Wagon"
+    wifi_password: "allyouneediscodeanddrink"
+    starts_at: "2018-05-29T13:32:34+02:00"
+    password: "batch145"
+    game_master_id: 0
+
+exercises:
+  - id: 0
+    title: "Github Nickname"
+    rules: >
+      Make sure that the method today_my_buddys_github_nickname_is does return
+      (this is different to puts!) the github username of your buddy.
+    specs: >
+      require "buddy"
+
+      describe "#buddy" do
+
+        let(:buddy) { today_my_buddys_github_nickname_is }
+
+        it "should not be blank and be a real github username" do
+          expect(buddy).not_to be_nil
+          expect(buddy).not_to eq('')
+
+          require "open-uri"
+          expect { open("https://github.com/#{buddy}").read }.not_to raise_error,
+            "The buddy '#{buddy}' you returned is not a valid github nickname (check case)"
+        end
+      end
+    solutions: >
+      def today_my_buddys_github_nickname_is
+        return "Emna"
+      end
+
+rounds:
+  - id: 0
+    game_id: 0
+    exercise_id: 0
+
