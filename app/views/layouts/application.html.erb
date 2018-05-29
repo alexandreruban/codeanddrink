@@ -9,9 +9,16 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="main-wrapper">
+      <% if current_game_master %>
+        <%= render 'shared/navbar_game_master' %>
+      <% else %>
+        <%= render 'shared/navbar_player' %>
+      <% end %>
+      <%= render 'shared/flashes' %>
+      <%= yield %>
+    </div>
+    <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
