@@ -17,6 +17,12 @@ class PlayersController < ApplicationController
     end
   end
 
+  def show
+    @attempt = Attempt.new
+    @player = Player.find(params[:id])
+    @round = Game.find(params[:game_id]).rounds.first
+  end
+
   private
 
   def player_params
