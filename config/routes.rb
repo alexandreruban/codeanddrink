@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :game_masters
 
   resources :games, only: [:show] do
-    resources :players, only: [:new, :create, :create, :destroy]
+    resources :players, only: [:new, :create, :show, :destroy]
   end
 
   resources :rounds, only: [] do
@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   namespace :game_masters do
     resources :games do
-      resources :rounds, only: [:index, :update]
+      resources :rounds, only: [:index] do
+        member do
+          patch :start
+        end
+      end
     end
   end
 end
