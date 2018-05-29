@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   resources :games, only: [:show] do
     resources :players, only: [:new, :create, :create, :destroy]
-    resources :attempts, only: [:update]
+  end
+
+  resources :rounds, only: [] do
+    resources :attempts, only: [:create]
   end
 
   namespace :game_masters do
