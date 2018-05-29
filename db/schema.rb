@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_141009) do
+ActiveRecord::Schema.define(version: 2018_05_29_124234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_141009) do
     t.index ["round_id"], name: "index_attempts_on_round_id"
   end
 
-  create_table "exercices", force: :cascade do |t|
+  create_table "exercises", force: :cascade do |t|
     t.string "title"
     t.text "rules"
     t.text "specs"
@@ -79,10 +79,10 @@ ActiveRecord::Schema.define(version: 2018_05_28_141009) do
     t.string "state"
     t.integer "number_of_winners"
     t.bigint "game_id"
-    t.bigint "exercice_id"
+    t.bigint "exercise_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exercice_id"], name: "index_rounds_on_exercice_id"
+    t.index ["exercise_id"], name: "index_rounds_on_exercise_id"
     t.index ["game_id"], name: "index_rounds_on_game_id"
   end
 
@@ -90,6 +90,6 @@ ActiveRecord::Schema.define(version: 2018_05_28_141009) do
   add_foreign_key "attempts", "rounds"
   add_foreign_key "games", "game_masters"
   add_foreign_key "players", "games"
-  add_foreign_key "rounds", "exercices"
+  add_foreign_key "rounds", "exercises"
   add_foreign_key "rounds", "games"
 end

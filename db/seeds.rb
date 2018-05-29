@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Destroying previous data..."
+Round.destroy_all
+Exercise.destroy_all
 Game.destroy_all
 GameMaster.destroy_all
 
@@ -27,7 +29,7 @@ puts "Creating exercises..."
 exercises = {}
 exercise_samples = samples["exercises"]
 exercise_samples.each do |exercise_sample|
-  exercises[exercise_sample["id"]] = Exercice.create!(exercise_sample.slice("title", "rules", "specs", "solution"))
+  exercises[exercise_sample["id"]] = Exercise.create!(exercise_sample.slice("title", "rules", "specs", "solution"))
 end
 
 # Create all games
@@ -47,7 +49,7 @@ round_samples = samples["rounds"]
 round_samples.each do |round_sample|
   round = Round.new
   round.game = games[round_sample["game_id"]]
-  round.exercice = exercises[round_sample["exercise_id"]]
+  round.exercise = exercises[round_sample["exercise_id"]]
   round.save!
 end
 
