@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RspecJobTest < ActiveJob::TestCase
+class AttemptValidationJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end
