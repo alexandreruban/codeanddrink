@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @game = games(:game)
+  end
+
+  test "game should be valid" do
+    assert @game.valid?
+  end
 end

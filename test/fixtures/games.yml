@@ -1,0 +1,8 @@
+game:
+  title: first game
+  description: this is our first game
+  wifi_network: lewagon
+  wifi_password: foobar
+  game_master: edouard
+  starts_at: <%= Date.today %>
+  password: foobar
