@@ -15,4 +15,13 @@ class RoundTest < ActiveSupport::TestCase
     @round.state = "not valid"
     assert_not @round.valid?
   end
+
+  test "round number_of_winners should be stricty positive" do
+    @round.number_of_winners = 0
+    assert_not @round.valid?
+  end
+
+  test "should have default state of 'not started'" do
+    assert_equal Round.new.state, "not started"
+  end
 end

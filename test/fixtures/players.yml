@@ -1,0 +1,14 @@
+alex:
+  username: alex
+  status: alive
+  game: game
+
+guillaume:
+  username: guillaume
+  status: alive
+  game: game
+
+marjorie:
+  username: marjorie
+  status: alive
+  game: game
