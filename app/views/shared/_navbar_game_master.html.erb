@@ -8,6 +8,11 @@
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <% if game_master_signed_in? %>
+    <div class="navbar-wagon-right hidden-xs hidden-sm">
+      <%= link_to "My games", game_master_games_path,
+        class: "navbar-wagon-item navbar-wagon-link"
+      %>
+    </div>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
@@ -36,6 +41,9 @@
           <%= link_to destroy_game_master_session_path, method: :delete do %>
             <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
           <% end %>
+        </li>
+        <li>
+          <%= link_to "My games", game_master_games_path %>
         </li>
       </ul>
     </div>

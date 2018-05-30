@@ -25,4 +25,8 @@ class GameMaster::RoundsController < ApplicationController
   def set_game
     @game = Game.find(params[:game_id])
   end
+
+  def current_round
+
+  end
 end

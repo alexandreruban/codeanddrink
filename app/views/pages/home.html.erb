@@ -7,4 +7,8 @@
   <%= link_to "Wouhou", "#", class: "button button-green"  %>
   <%= link_to "Wouhou", "#", class: "button button-yellow"  %>
   <%= link_to "Wouhou", "#", class: "button button-red"  %>
+  <h1>List of games</h1>
+  <% @games.each do |game| %>
+    <%= link_to game.title, new_game_player_path(game) %>
+  <% end %>
 </div>
