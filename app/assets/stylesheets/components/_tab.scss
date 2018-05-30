@@ -1,0 +1,41 @@
+#custom-tabs{
+
+  & .nav-link{
+  color: white;
+  margin: 50px 0 50px 0;
+  }
+  & .nav-item{
+    border-radius: 20px 20px 0 0;
+    background: $purple;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 15px;
+}
+  & a:hover {
+    cursor: pointer;
+    text-decoration: none;
+    opacity: 0.8;
+}
+  & h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+}
+
+p {
+    margin-top: 15px;
+  }
+
+#custom-tabs{
+  & .active{
+  background: $yellow;
+}
+}
+
+// Le css codeaera sera remplacer par l'editeur de texte ace //
+#codeaera {
+  background-color: black;
+  width:100%;
+  min-height:630px;
+  margin: 20px 0;
+}

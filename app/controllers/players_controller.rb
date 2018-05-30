@@ -1,5 +1,15 @@
 class PlayersController < ApplicationController
+
   skip_before_action :authenticate_game_master!
+
+  def show
+    @player = Player.find(params[:id])
+    @round = Game.find(params[:game_id]).rounds.first # to change
+    @exercise = @round.exercise
+    @attempt = Attempt.new
+    @last_attempts = @round.attempts.where(player: @player)
+    #ne pas oublier de rajouter le "state" lorsque celui-ci sera créé.
+  end
 
   def new
     @game = Game.find(params[:game_id])
@@ -15,13 +25,6 @@ class PlayersController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
-    @attempt = Attempt.new
-    @player = Player.find(params[:id])
-    @round = Game.find(params[:game_id]).rounds.first # to change
-    @last_attempts = @round.attempts.where(player: @player)
   end
 
   private

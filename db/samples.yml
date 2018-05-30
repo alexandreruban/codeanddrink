@@ -95,8 +95,11 @@ rounds:
     game_id: 0
     exercise_id: 0
     number_of_winners: 5
+<<<<<<< HEAD
   - id: 1
     game_id: 0
     exercise_id: 1
     number_of_winners: 5
+=======
+>>>>>>> master
 
