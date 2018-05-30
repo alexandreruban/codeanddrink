@@ -1,0 +1,6 @@
+attempt:
+  player: guillaume
+  round: round
+  spec_output: "something"
+  player_input: "something"
+  status: "undefined"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_100107) do
+ActiveRecord::Schema.define(version: 2018_05_30_103926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_05_30_100107) do
   create_table "attempts", force: :cascade do |t|
     t.text "player_input"
     t.text "spec_output"
-    t.string "status"
+    t.string "status", default: "undefined"
     t.bigint "round_id"
     t.bigint "player_id"
     t.datetime "created_at", null: false

@@ -4,5 +4,4 @@ class Exercise < ApplicationRecord
   validates :title, presence: true
   validates :rules, presence: true
   validates :specs, presence: true
-  validates :solution, presence: true
 end
