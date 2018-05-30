@@ -1,3 +1,5 @@
+require 'open3'
+
 class AttemptsController < ApplicationController
   skip_before_action :authenticate_game_master!
 
@@ -12,7 +14,7 @@ class AttemptsController < ApplicationController
       if Dir.mkdir(dir_path)
         create_attempt_file(dir_path, @attempt)
         create_rspec_file(dir_path, @round.exercise)
-        raise
+        run_rake(dir_path)
       end
     end
   end
@@ -21,6 +23,16 @@ class AttemptsController < ApplicationController
 
   def attempt_params
     params.require(:attempt).permit(:player_input)
+  end
+
+  def run_rake(path)
+    @exitstatus = -1
+    Timeout.timeout(20) do
+      Open3.popen2e('rspec', chdir: path) do |_stdin, _stdout_and_stderr, wait_thr|
+        #@output = stdout_and_stderr.readlines
+        @exitstatus = wait_thr.value.exitstatus
+      end
+    end
   end
 
   def create_attempt_file(dir_path, attempt)
