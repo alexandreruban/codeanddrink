@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :rounds, only: [:index] do
         member do
           patch :start
+          patch :stop
           patch :update_number_of_winners
         end
       end

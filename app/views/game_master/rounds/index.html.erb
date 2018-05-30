@@ -9,24 +9,32 @@
 
       <div class="form-inline">
         <%= form_for [:game_master, @game, round],
-        url: update_number_of_winners_game_master_game_round_url(@game, round) do |f|
+          url: update_number_of_winners_game_master_game_round_url(@game, round) do |f|
         %>
           <div class="form-group">
             <%= f.number_field :number_of_winners,
-            placeholder: "Number of winners",
-            class: "form-control"
+              placeholder: "Number of winners",
+              class: "form-control"
             %>
           </div>
           <%= f.submit 'Change number of winners', class: 'button button-yellow' %>
         <% end %>
       </div>
 
-      <div>
-        <%= link_to 'Start round',
-        start_game_master_game_round_path(:game_master, @game, round),
-        class: 'button button-green',
-        method: :patch
-        %>
+      <div class="round-action" >
+        <% if @game.round_running? %>
+          <%= link_to 'Stop round',
+            stop_game_master_game_round_path(@game, round),
+            class: 'button button-red',
+            method: :patch
+          %>
+        <% else %>
+          <%= link_to 'Start round',
+            start_game_master_game_round_path(@game, round),
+            class: 'button button-green',
+            method: :patch
+          %>
+        <% end %>
       </div>
     </div>
   <% end %>

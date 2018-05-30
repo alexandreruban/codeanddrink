@@ -1,4 +1,6 @@
 class Round < ApplicationRecord
+  default_scope { order(created_at: :desc) }
+
   belongs_to :game
   belongs_to :exercise
   has_many :attempts
