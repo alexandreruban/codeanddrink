@@ -1,22 +1,29 @@
 require 'open3'
+require 'fileutils'
 
 class AttemptsController < ApplicationController
   skip_before_action :authenticate_game_master!
 
   def create
+    @exitstatus = -1
     @round = Round.find(params[:round_id])
     @player = Player.find(params[:player_id])
     @attempt = Attempt.new(attempt_params)
     @attempt.round = @round
     @attempt.player = @player
+    @attempt.status = @exitstatus
     if @attempt.save
       dir_path = "#{Dir.tmpdir}/attempt_#{@attempt.id}"
+      FileUtils.rm_r(dir_path) if Dir.exist?(dir_path)
       if Dir.mkdir(dir_path)
         create_attempt_file(dir_path, @attempt)
         create_rspec_file(dir_path, @round.exercise)
         run_rake(dir_path)
+        @attempt.status = @exitstatus
+        @attempt.save
       end
     end
+    redirect_to game_player_path(@player.game, @player)
   end
 
   private

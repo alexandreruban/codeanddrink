@@ -1,5 +1,11 @@
+<h1><%= @round.exercise.title %></h1>
+<br>
+<p><%= @round.exercise.rules %></p>
+<br>
 <%= simple_form_for [@round, @attempt] do |f| %>
 <%= hidden_field_tag 'player_id', @player.id %>
-<%= f.input :player_input %>
+<%= f.input :player_input, input_html: { value: @last_attempts.empty? ? @round.exercise.template : @last_attempts.last.player_input, rows: 8 } %>
 <%= f.submit %>
 <% end %>
+<br>
+<p>Status: <%= @last_attempts.empty? ? "?" : @last_attempts.last.status %> (<%= @last_attempts.count %> attempt(s))</p>

@@ -20,7 +20,8 @@ class PlayersController < ApplicationController
   def show
     @attempt = Attempt.new
     @player = Player.find(params[:id])
-    @round = Game.find(params[:game_id]).rounds.first
+    @round = Game.find(params[:game_id]).rounds.first # to change
+    @last_attempts = @round.attempts.where(player: @player)
   end
 
   private
