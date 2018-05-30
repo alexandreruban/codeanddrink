@@ -13,4 +13,8 @@ class Game < ApplicationRecord
   def round_running?
     self.rounds.where(state: 'running').any?
   end
+
+  def not_started?
+    self.rounds.first.state == "not started"
+  end
 end

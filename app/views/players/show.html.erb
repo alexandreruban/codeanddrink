@@ -1,7 +1,9 @@
 <div id="game">
   <% if @game.round_running? %>
     <%= render 'game_screen' %>
+  <% elsif @game.not_started? %>
+    <%= render 'welcome_screen' %>
   <% else %>
-    <%= render 'waiting_screen' %>
+    <%= render 'ranking_screen' %>
   <% end %>
 </div>

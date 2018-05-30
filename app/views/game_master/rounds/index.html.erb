@@ -21,7 +21,7 @@
         <% end %>
       </div>
 
-      <div>
+      <div class="round-action" >
         <% if @game.round_running? %>
           <%= link_to 'Stop round',
             stop_game_master_game_round_path(@game, round),

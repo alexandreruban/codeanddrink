@@ -3,7 +3,7 @@ class GameMaster::RoundsController < ApplicationController
   before_action :set_round, except: [:index]
 
   def index
-    @rounds = @game.rounds.order(created_at: :desc)
+    @rounds = @game.rounds
   end
 
   def update_number_of_winners
