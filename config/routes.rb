@@ -10,11 +10,12 @@ Rails.application.routes.draw do
     resources :attempts, only: [:create]
   end
 
-  namespace :game_masters do
+  namespace :game_master do
     resources :games do
       resources :rounds, only: [:index] do
         member do
           patch :start
+          patch :update_number_of_winners
         end
       end
     end

@@ -1,0 +1,13 @@
+.circle-red {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: $red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}

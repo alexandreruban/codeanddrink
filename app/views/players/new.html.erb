@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <div class="form-centered">
+        <h1>New player</h1>
+        <%= simple_form_for [@game, @player] do |f| %>
+        <%= f.input :username %>
+        <%= f.input :password, label: "Game password" %>
+        <%= f.submit "Join Game", class: "button button-purple button-wide" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
