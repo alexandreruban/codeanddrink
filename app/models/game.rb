@@ -9,4 +9,8 @@ class Game < ApplicationRecord
   validates :wifi_password, presence: true
   validates :starts_at, presence: true
   validates :password, presence: true
+
+  def round_running?
+    self.rounds.where(state: 'running').any?
+  end
 end

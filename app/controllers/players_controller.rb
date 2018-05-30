@@ -5,7 +5,8 @@ class PlayersController < ApplicationController
 
   def show
     @player = Player.find(params[:id])
-    @players = Game.find(params[:game_id]).players
+    @game = Game.find(params[:game_id])
+    @players = @game.players
     @exercise = Exercise.joins(rounds: :game).where(rounds: { game_id: params[:game_id] }).first
     #ne pas oublier de rajouter le "state" lorsque celui-ci sera créé.
   end

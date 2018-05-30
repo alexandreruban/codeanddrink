@@ -1,7 +1,7 @@
 <div id="game">
-  <% if  %>
-    <%= render 'waiting_screen' %>
-  <% else %>
+  <% if @game.round_running? %>
     <%= render 'game_screen' %>
+  <% else %>
+    <%= render 'waiting_screen' %>
   <% end %>
 </div>

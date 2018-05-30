@@ -1,19 +1,24 @@
 class GameMaster::RoundsController < ApplicationController
-  before_action :set_game, only: [:index, :update_number_of_winners]
+  before_action :set_game
+  before_action :set_round, except: [:index]
 
   def index
     @rounds = @game.rounds.order(created_at: :desc)
   end
 
   def update_number_of_winners
-    @round = Round.find(params[:id])
-    unless @round.update(round_params)
-      flash[:warning] = "The number of winners is too big!"
-    end
+    @round.update(round_params)
     redirect_to game_master_game_rounds_path(@game)
   end
 
   def start
+    @round.update(state: "running")
+    redirect_to game_master_game_rounds_path(@game)
+  end
+
+  def stop
+    @round.update(state: "finished")
+    redirect_to game_master_game_rounds_path(@game)
   end
 
   private
@@ -24,5 +29,9 @@ class GameMaster::RoundsController < ApplicationController
 
   def set_game
     @game = Game.find(params[:game_id])
+  end
+
+  def set_round
+    @round = Round.find(params[:id])
   end
 end
