@@ -5,14 +5,22 @@
 <!-- div écran Enocé/Test -->
       <div class="col-xs-6">
 <!-- div boutons Enoncé et Test -->
-        <div class="nav nav-tabs tabs">
-          <a class="tab active" href="#rules" aria-controls="rules" role="tab" data-toggle="tab">
-            <h3>Rules</h3>
-          </a>
-          <a class="tab" href="#tests" aria-controls="tests" role="tab" data-toggle="tab">
-            <h3>Test</h3>
-          </a>
-        </div>
+        <ul class="nav nav-tabs" role="tablist" id="custom-tabs">
+          <li class="nav-item" >
+            <div>
+              <a class="nav-link active" id="rules-tab" href="#rules" aria-controls="rules" role="tab" data-toggle="tab" aria-selected="true">
+              <h3>Rules</h3>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <div>
+              <a class=" nav-link" id="tests-tab" href="#tests" aria-controls="tests" role="tab" data-toggle="tab" aria-selected="false">
+              <h3>Test</h3>
+              </a>
+            </div>
+          </li>
+        </ul>
 <!-- div Fin - boutons Enoncé et Test -->
 <!-- div zone de texte -->
         <div class="tab-content">
@@ -20,11 +28,11 @@
             <p> <%= @exercise.rules %> </p>
           </div>
           <div role="tabpanel" class="tab-pane" id ="tests" >
-              <p> <%= @exercise.specs %>  </p>
+            <p> <%= @exercise.specs %>  </p>
           </div>
         </div>
-      </div>
 <!-- div Fin - Zone de text-->
+      </div>
 <!-- div écran code area + btn submit et reset -->
       <div class="col-xs-6">
 <!-- div écran code area -->
