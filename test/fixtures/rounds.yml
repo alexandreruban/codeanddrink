@@ -1,0 +1,5 @@
+round:
+  game: game
+  exercise: exercise
+  state: not started
+  number_of_winners: 1

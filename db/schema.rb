@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_29_124234) do
+ActiveRecord::Schema.define(version: 2018_05_30_103926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_124234) do
   create_table "attempts", force: :cascade do |t|
     t.text "player_input"
     t.text "spec_output"
-    t.string "status"
+    t.string "status", default: "undefined"
     t.bigint "round_id"
     t.bigint "player_id"
     t.datetime "created_at", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_124234) do
 
   create_table "players", force: :cascade do |t|
     t.string "username"
-    t.string "status"
+    t.string "status", default: "alive"
     t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_124234) do
   end
 
   create_table "rounds", force: :cascade do |t|
-    t.string "state"
+    t.string "state", default: "not started"
     t.integer "number_of_winners"
     t.bigint "game_id"
     t.bigint "exercise_id"
