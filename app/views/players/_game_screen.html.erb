@@ -25,10 +25,13 @@
         <!-- div zone de texte -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="rules" >
-            <p> <%= @exercise.rules %> </p>
+            <p><%= @exercise.rules %> </p>
           </div>
           <div role="tabpanel" class="tab-pane" id ="tests" >
-            <p>Status: <%= @last_attempts.empty? ? "?" : @last_attempts.last.status %> (<%= @last_attempts.count %> attempt(s))</p>
+            <div id="spec-output">
+              <p><%= @last_attempts.last.spec_output unless @last_attempts.empty? %></p>
+            </div>
+            <p>Status: <strong><%= @last_attempts.empty? ? "?" : @last_attempts.last.status %></strong> (<%= @last_attempts.count %> attempt(s))</p>
           </div>
         </div>
         <!-- div Fin - Zone de text-->
@@ -40,12 +43,10 @@
           <!-- écrire le placeholder du code de l'exercice ici pour l'écrire dans l'éditeur -->
 <%= @last_attempts.empty? ? @round.exercise.template : @last_attempts.last.player_input %>
         </div>
-        <div>
           <%= simple_form_for [@round, @attempt] do |f| %>
           <%= hidden_field_tag 'player_id', @player.id %>
           <%= f.input :player_input, input_html: { style: "display:none;" }, label: false %>
           <% end %>
-        </div>
       </div>
     </div>
   </div>
