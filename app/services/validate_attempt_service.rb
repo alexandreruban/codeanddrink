@@ -9,9 +9,10 @@ class ValidateAttemptService
 
   def call
     if create_dir && create_attempt_file && create_rspec_file
-      status = run_rspec
+      status, lines = run_rspec
       delete_dir
       @attempt.status = status == 0 ? "valid" : "invalid"
+      @attempt.spec_output = lines.join
       @attempt.save
     end
   end
@@ -46,8 +47,7 @@ class ValidateAttemptService
   def run_rspec
     Timeout.timeout(20) do
       Open3.popen2e('rspec', chdir: @dir_path) do |_stdin, stdout_and_stderr, wait_thr|
-        stdout_and_stderr.readlines
-        wait_thr.value.exitstatus
+        return wait_thr.value.exitstatus, stdout_and_stderr.readlines
       end
     end
   end
