@@ -1,7 +1,7 @@
 class Round < ApplicationRecord
   attr_accessor :winners
 
-  default_scope { order(created_at: :desc) }
+  default_scope { order(created_at: :asc) }
 
   belongs_to :game
   belongs_to :exercise
