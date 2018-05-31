@@ -1,5 +1,5 @@
 <div id="game">
-  <% if @game.round_running? && @current_player.status == "alive" %>
+  <% if @game.round_running? && @current_player.status == "playing" %>
     <%= render 'game_screen' %>
   <% elsif @game.not_started? %>
     <%= render 'welcome_screen' %>

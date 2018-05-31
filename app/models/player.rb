@@ -3,7 +3,7 @@ class Player < ApplicationRecord
   has_many :attempts
   validates :username, presence: true, uniqueness: true
 
-  validates :status, inclusion: { in: %w[alive defeated] }
+  validates :status, inclusion: { in: %w[alive defeated playing] }
 
   def has_no_successful_attempts?
     self.attempts.select { |attempt| attempt.status == "valid" } == []
