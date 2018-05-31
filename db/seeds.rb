@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Destroying previous data..."
+Attempt.destroy_all
 Round.destroy_all
 Exercise.destroy_all
 Player.destroy_all

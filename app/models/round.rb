@@ -5,7 +5,7 @@ class Round < ApplicationRecord
 
   belongs_to :game
   belongs_to :exercise
-  has_many :attempts
+  has_many :attempts, dependent: :destroy
 
   validates :number_of_winners, {
     numericality: { only_integer: true, greater_than: 0 }
