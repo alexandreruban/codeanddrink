@@ -16,7 +16,7 @@ class ValidateAttemptService
         @attempt.player.update(status: "alive")
         @attempt.round.winners += 1
       else
-        @attempt.status = "valid"
+        @attempt.status = "invalid"
       end
       @attempt.save
     end

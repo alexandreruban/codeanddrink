@@ -14,17 +14,13 @@ class GameMaster::RoundsController < ApplicationController
   def start
     @round.update(state: "running")
     @round.winners = 0
-    @round.game.players.where(status: "alive").each { |player| player.update(status: "playing") }
+    @round.game.players.where(status: "alive").update_all(status: "playing")
     redirect_to game_master_game_rounds_path(@game)
   end
 
   def stop
     @round.update(state: "finished")
-    @players = @game.players
-    @players.each do |player|
-      player.update_status
-      player.save
-    end
+    @game.players.where(status: "playing").update_all(status: "defeated")
     redirect_to game_master_game_rounds_path(@game)
   end
 
