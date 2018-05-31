@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+      <div class="form-centered">
+        <h1><%= yield(:title) %></h1>
+        <%= simple_form_for [:game_master, @game, @round] do |f| %>
+          <%= f.input :number_of_winners %>
+          <%= f.association :exercise, collection: @exercises %>
+        <%= f.submit yield(:submit), class: "button button-purple button-wide" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

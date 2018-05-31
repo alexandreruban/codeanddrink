@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   namespace :game_master do
     resources :games do
-      resources :rounds, only: [:index] do
+      resources :rounds, only: [:index, :edit, :update, :new, :create] do
         member do
           patch :start
           patch :stop
@@ -27,5 +27,7 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :rounds, only: [:destroy]
+
   end
 end
