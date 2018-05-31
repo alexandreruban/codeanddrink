@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_05_30_103926) do
     t.text "solution"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "template"
   end
 
   create_table "game_masters", force: :cascade do |t|

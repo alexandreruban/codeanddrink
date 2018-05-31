@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  # Sidekiq Web UI, only for admins.
+  require "sidekiq/web"
+  authenticate :game_master do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   root to: 'pages#home'
   devise_for :game_masters
 
@@ -15,6 +22,7 @@ Rails.application.routes.draw do
       resources :rounds, only: [:index] do
         member do
           patch :start
+          patch :stop
           patch :update_number_of_winners
         end
       end

@@ -1,59 +1,11 @@
-<div class="container">
-  <div class="main-container">
-<!-- div des 2 écran Enocé/Test et code area -->
-    <div class="row">
-<!-- div écran Enocé/Test -->
-      <div class="col-xs-6">
-<!-- div boutons Enoncé et Test -->
-        <ul class="nav nav-tabs" role="tablist" id="custom-tabs">
-          <li class="nav-item" >
-            <div>
-              <a class="nav-link active" id="rules-tab" href="#rules" aria-controls="rules" role="tab" data-toggle="tab" aria-selected="true">
-              <h3>Rules</h3>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <div>
-              <a class=" nav-link" id="tests-tab" href="#tests" aria-controls="tests" role="tab" data-toggle="tab" aria-selected="false">
-              <h3>Test</h3>
-              </a>
-            </div>
-          </li>
-        </ul>
-<!-- div Fin - boutons Enoncé et Test -->
-<!-- div zone de texte -->
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="rules" >
-            <p> <%= @exercise.rules %> </p>
-          </div>
-          <div role="tabpanel" class="tab-pane" id ="tests" >
-            <p> <%= @exercise.specs %>  </p>
-          </div>
-        </div>
-<!-- div Fin - Zone de text-->
-      </div>
-<!-- div écran code area + btn submit et reset -->
-      <div class="col-xs-6">
-<!-- div écran code area -->
-        <div id="editor">
-<!-- écrire le placeholder du code de l'exercice ici pour l'écrire dans l'éditeur -->
-def multiply(a b)
-  a * b
-end
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- div des 2 boutons reset et submit -->
-<div class="validation">
-  <div class="purple_band">
-    <div class="left">
-    <%= link_to "Reset", "#", class: "button button-red" %>
-    <%= link_to "Submit", "#", class: "button button-green" %>
-    </div>
-  </div>
+<div id="game">
+  <% if @game.round_running? %>
+    <%= render 'game_screen' %>
+  <% elsif @game.not_started? %>
+    <%= render 'welcome_screen' %>
+  <% else %>
+    <%= render 'ranking_screen' %>
+  <% end %>
 </div>
 
 

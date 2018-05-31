@@ -30,7 +30,7 @@ puts "Creating exercises..."
 exercises = {}
 exercise_samples = samples["exercises"]
 exercise_samples.each do |exercise_sample|
-  exercises[exercise_sample["id"]] = Exercise.create!(exercise_sample.slice("title", "rules", "specs", "solution"))
+  exercises[exercise_sample["id"]] = Exercise.create!(exercise_sample.slice("title", "rules", "specs", "template", "solution"))
 end
 
 # Create all games
