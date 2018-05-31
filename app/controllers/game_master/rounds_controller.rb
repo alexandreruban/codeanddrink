@@ -1,13 +1,41 @@
 class GameMaster::RoundsController < ApplicationController
-  before_action :set_game
-  before_action :set_round, except: [:index]
+  before_action :set_game, except: [:destroy]
+  before_action :set_round, except: [:index, :new, :create]
 
   def index
     @rounds = @game.rounds
   end
 
-  def update_number_of_winners
-    @round.update(round_params)
+  def new
+    @round = Round.new
+    @exercises = Exercise.all
+  end
+
+  def create
+    @round = Round.new(round_params)
+    @round.game = @game
+    if @round.save
+      redirect_to game_master_game_rounds_path(@game)
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @round = Round.find(params[:id])
+    @exercises = Exercise.all
+  end
+
+  def update
+    @round = Round.find(params[:id])
+    @round.update!(round_params)
+    redirect_to game_master_game_rounds_path(@game)
+  end
+
+  def destroy
+    @round = Round.find(params[:id])
+    @game = @round.game
+    @round.destroy
     redirect_to game_master_game_rounds_path(@game)
   end
 
@@ -24,7 +52,7 @@ class GameMaster::RoundsController < ApplicationController
   private
 
   def round_params
-    params.require(:round).permit(:number_of_winners)
+    params.require(:round).permit(:number_of_winners, :exercise_id)
   end
 
   def set_game

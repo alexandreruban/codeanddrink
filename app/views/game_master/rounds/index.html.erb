@@ -1,26 +1,27 @@
 <div class="container">
   <h1>Rounds for "<%= @game.title %>"</h1>
+  <%= link_to '+ Ajouter un round', new_game_master_game_round_path(@game)%>
+
   <% @rounds.each_with_index do |round, index| %>
     <div class="round box-shadow">
       <div class="round-info">
         <div class="circle-red mr-1"><%= index + 1 %></div>
-        <p><%= round.exercise.title %></p>
-      </div>
-
-      <div class="form-inline">
-        <%= form_for [:game_master, @game, round],
-          url: update_number_of_winners_game_master_game_round_url(@game, round) do |f|
-        %>
-          <div class="form-group">
-            <%= f.number_field :number_of_winners,
-              placeholder: "Number of winners",
-              class: "form-control"
-            %>
+        <div>
+          <p><%= round.exercise.title %></p>
+          <p> <%= round.number_of_winners %> winners </p>
+          <div class="icon">
+            <%= link_to game_master_round_path(round) , {
+              method: :delete,
+              data: { confirm: "Are you sure?" }
+            } do %>
+            <%= icon('fa', 'trash-alt') %>
+            <% end %>
+            <%= link_to edit_game_master_game_round_path(@game, round)  do %>
+            <%= icon('fa', 'edit') %>
+            <% end %>
           </div>
-          <%= f.submit 'Change number of winners', class: 'button button-yellow' %>
-        <% end %>
+        </div>
       </div>
-
       <div class="round-action" >
         <% if @game.round_running? %>
           <%= link_to 'Stop round',

@@ -1,4 +1,5 @@
 .round {
+  margin: 1rem 0;
   background-color: $purple;
   padding: 1rem;
   display: flex;
@@ -17,4 +18,9 @@
   p {
     margin: 0;
   }
+}
+
+.icon a {
+    color: white;
+    text-decoration: none;
 }
