@@ -28,8 +28,11 @@ class GameMaster::RoundsController < ApplicationController
 
   def update
     @round = Round.find(params[:id])
-    @round.update!(round_params)
-    redirect_to game_master_game_rounds_path(@game)
+    if @round.update(round_params)
+      redirect_to game_master_game_rounds_path(@game)
+    else
+      render :edit
+    end
   end
 
   def destroy
