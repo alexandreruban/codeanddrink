@@ -22,19 +22,7 @@
       </div>
 
       <div class="round-action" >
-        <% if @game.round_running? %>
-          <%= link_to 'Stop round',
-            stop_game_master_game_round_path(@game, round),
-            class: 'button button-red',
-            method: :patch
-          %>
-        <% else %>
-          <%= link_to 'Start round',
-            start_game_master_game_round_path(@game, round),
-            class: 'button button-green',
-            method: :patch
-          %>
-        <% end %>
+        <%= render partial: 'action_button', locals: { round: round } %>
       </div>
     </div>
   <% end %>

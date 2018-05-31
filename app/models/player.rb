@@ -3,5 +3,5 @@ class Player < ApplicationRecord
   has_many :attempts
   validates :username, presence: true, uniqueness: true
 
-  validates :status, inclusion: { in: %w[alive defeated] }
+  validates :status, inclusion: { in: %w[alive defeated playing] }
 end

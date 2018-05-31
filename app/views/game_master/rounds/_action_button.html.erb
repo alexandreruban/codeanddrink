@@ -1,0 +1,15 @@
+<% if round.state == "running" %>
+  <%= link_to 'Stop round',
+    stop_game_master_game_round_path(@game, round),
+    class: 'button button-red',
+    method: :patch
+  %>
+<% elsif round.state == "not started" %>
+  <%= link_to 'Start round',
+    start_game_master_game_round_path(@game, round),
+    class: 'button button-green',
+    method: :patch
+  %>
+<% else %>
+  Round is over!
+<% end %>

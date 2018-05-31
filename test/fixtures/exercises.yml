@@ -3,3 +3,4 @@ exercise:
   rules: should return -n
   specs: some specs
   solution: the solution
+  template: a template
