@@ -18,6 +18,11 @@ class GameMaster::RoundsController < ApplicationController
 
   def stop
     @round.update(state: "finished")
+    @players = @game.players
+    @players.each do |player|
+      player.update_status
+      player.save
+    end
     redirect_to game_master_game_rounds_path(@game)
   end
 
