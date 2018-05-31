@@ -25,7 +25,7 @@ class PlayersController < ApplicationController
     @game = Game.find(params[:game_id])
     @player = Player.new(player_params)
     @player.game = @game
-    if (params["player"]["password"] == @game.password) && @player.save
+    if (params["player"]["password"] == @game.password) && @player.save!
       session[:player_id] = @player.id
       redirect_to game_player_path(@game, @player)
     else

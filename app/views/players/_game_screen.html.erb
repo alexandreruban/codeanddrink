@@ -25,10 +25,13 @@
         <!-- div zone de texte -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="rules" >
-            <p> <%= @exercise.rules %> </p>
+            <p><%= @exercise.rules %> </p>
           </div>
           <div role="tabpanel" class="tab-pane" id ="tests" >
-            <p>Status: <%= @last_attempts.empty? ? "?" : @last_attempts.last.status %> (<%= @last_attempts.count %> attempt(s))</p>
+            <div id="spec-output">
+              <p><%= @last_attempts.last.spec_output unless @last_attempts.empty? %></p>
+            </div>
+            <p>Status: <strong><%= @last_attempts.empty? ? "?" : @last_attempts.last.status %></strong> (<%= @last_attempts.count %> attempt(s))</p>
           </div>
         </div>
         <!-- div Fin - Zone de text-->
@@ -36,13 +39,14 @@
       <!-- div écran code area + btn submit et reset -->
       <div class="col-xs-6">
         <!-- div écran code area -->
-        <div id="codeaera">
+        <div id="editor">
+          <!-- écrire le placeholder du code de l'exercice ici pour l'écrire dans l'éditeur -->
+<%= @last_attempts.empty? ? @round.exercise.template : @last_attempts.last.player_input %>
+        </div>
           <%= simple_form_for [@round, @attempt] do |f| %>
           <%= hidden_field_tag 'player_id', @player.id %>
-          <%= f.input :player_input, input_html: { value: @last_attempts.empty? ? @round.exercise.template : @last_attempts.last.player_input, rows: 8 } %>
-          <%= f.submit %>
+          <%= f.input :player_input, input_html: { style: "display:none;" }, label: false %>
           <% end %>
-        </div>
       </div>
     </div>
   </div>
@@ -52,7 +56,8 @@
   <div class="purple_band">
     <div class="left">
       <%= link_to "Reset", "#", class: "button button-red" %>
-      <%= link_to "Submit", "#", class: "button button-green" %>
+      <%= link_to "Submit", "#", class: "button button-green", id: "submit" %>
     </div>
   </div>
-</div>
+  <div>
+
