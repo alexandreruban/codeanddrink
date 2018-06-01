@@ -41,7 +41,6 @@
         <!-- div écran code area -->
         <div id="editor">
           <!-- écrire le placeholder du code de l'exercice ici pour l'écrire dans l'éditeur -->
-<%= @last_attempts.empty? ? @round.exercise.template : @last_attempts.last.player_input %>
         </div>
           <!-- Hidden components -->
           <%= simple_form_for [@round, @attempt] do |f| %>
@@ -49,6 +48,7 @@
           <%= f.input :player_input, input_html: { style: "display:none;" }, label: false %>
           <% end %>
           <div id="template" style="display: none"><%= @round.exercise.template %></div>
+          <div id="last_attempt" style="display: none"><%= @last_attempts.last.player_input unless @last_attempts.empty? %></div>
       </div>
     </div>
   </div>

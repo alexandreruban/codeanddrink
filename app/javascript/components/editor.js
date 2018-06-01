@@ -19,6 +19,7 @@ function codescreen() {
   const submit = document.getElementById("submit");
   const reset = document.getElementById("reset");
   const template = document.getElementById("template");
+  const last_template = document.getElementById("last_attempt");
   if (submit) {
     submit.addEventListener('click', (event) => {
       event.preventDefault();
@@ -29,9 +30,13 @@ function codescreen() {
   if (reset) {
     reset.addEventListener('click', (event) => {
       event.preventDefault();
-      console.log(template.innerHTML);
       editor.setValue(template.innerHTML);
     });
+  }
+  if (last_attempt.innerHTML == "") {
+    editor.setValue(template.innerHTML);
+  } else {
+    editor.setValue(last_attempt.innerHTML);
   }
 }
 export {codescreen};
