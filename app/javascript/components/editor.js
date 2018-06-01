@@ -34,9 +34,9 @@ function codescreen() {
     });
   }
   if (last_attempt.innerHTML == "") {
-    editor.setValue(template.innerHTML);
+    editor.setValue(template.innerText);
   } else {
-    editor.setValue(last_attempt.innerHTML);
+    editor.setValue(last_attempt.innerText);
   }
 }
 export {codescreen};
