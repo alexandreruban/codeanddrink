@@ -3,14 +3,6 @@ game_masters:
     email: "edouardf@lewagon.org"
     password: "edouardf"
 
-players:
-  - username: marjorie
-    game_id: 0
-  - username: alexandre
-    game_id: 0
-  - username: guillaume
-    game_id: 0
-
 games:
   - id: 0
     title: "Let's code and drink!"

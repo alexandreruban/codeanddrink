@@ -56,13 +56,13 @@ round_samples.each do |round_sample|
 end
 
 # Create all players
-puts "Creating players..."
-player_samples = samples["players"]
-player_samples.each do |player_sample|
-  player = Player.new(player_sample.slice("username"))
-  player.game = games[player_sample["game_id"]]
-  player.save!
-end
+# puts "Creating players..."
+# player_samples = samples["players"]
+# player_samples.each do |player_sample|
+#   player = Player.new(player_sample.slice("username"))
+#   player.game = games[player_sample["game_id"]]
+#   player.save!
+# end
 
 puts "Done."
 
