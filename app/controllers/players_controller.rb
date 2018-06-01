@@ -9,7 +9,7 @@ class PlayersController < ApplicationController
     @alive_players = @players.select { |player| player.status == "alive" }
     @defeated_players = @players.select { |player| player.status == "defeated" }
     @playing_players = @players.select { |player| player.status == "playing" }
-    @round = @game.rounds.first # to change
+    @round = @game.rounds.find_by(state: "running")
     @exercise = @round.exercise
     @attempt = Attempt.new
     @last_attempts = @round.attempts.where(player: @player)
