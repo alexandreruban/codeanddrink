@@ -12,6 +12,19 @@
   background-color: transparent;
 }
 
+.button-lg {
+  padding: 1.7rem 10rem;
+  border-radius: 2.5rem;
+  color: white;
+  text-decoration: none;
+  transition: 300ms;
+}
+
+.button-lg:hover, .button-lg:focus, .button-lg:active {
+  text-decoration: none;
+  background-color: transparent;
+}
+
 // Color specific details
 .button-purple {
   border: solid 2px $purple;
@@ -63,6 +76,22 @@
 
 .button-yellow:focus, .button-yellow:active {
   box-shadow: 0 0 4px $yellow;
+}
+
+.button-white {
+  border: solid 2px $white;
+  background-color: $white;
+  color: #000053;
+  font-weight: bold;
+}
+
+.button-white:hover, .button-white:focus, .button-white:active {
+  color: $white;
+  text-decoration: none;
+}
+
+.button-white:focus, .button-white:active {
+  box-shadow: 0 0 4px $white;
 }
 
 .button-red {

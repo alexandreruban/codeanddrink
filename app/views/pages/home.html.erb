@@ -1,14 +1,8 @@
-<div class="container">
-  <h1>Code and drink buttons</h1>
-  <p>We already chose fonts and buttons!</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit distinctio sapiente laborum reprehenderit alias harum veritatis placeat beatae assumenda, accusamus eum magnam ad quod repellat nihil nostrum nemo adipisci unde!</p>
-  <%= link_to "Wouhou", "#", class: "button button-purple"  %>
-  <%= link_to "Wouhou", "#", class: "button button-blue"  %>
-  <%= link_to "Wouhou", "#", class: "button button-green"  %>
-  <%= link_to "Wouhou", "#", class: "button button-yellow"  %>
-  <%= link_to "Wouhou", "#", class: "button button-red"  %>
-  <h1>List of games</h1>
-  <% @games.each do |game| %>
-    <%= link_to game.title, new_game_player_path(game) %>
-  <% end %>
-</div>
+
+  <div class="banner" style="background-image: linear-gradient(-248deg, rgba(134,0,245,1) 20%, rgba(134,0,245,0.4) 50%), url('<%= image_path 'fond.jpg' %>');">
+    <div class="banner-content">
+    <h1>Code and drink </h1>
+    <p> Challenge your buddies and have fun! </p>
+      <%= link_to "JOIN THE GAME", new_game_player_path(@game), class: "button-lg button-white" %>
+    </div>
+  </div>
