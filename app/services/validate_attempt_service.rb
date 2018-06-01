@@ -11,15 +11,12 @@ class ValidateAttemptService
     if create_dir && create_attempt_file && create_rspec_file
       status, lines = run_rspec
       delete_dir
-      if status == 0
-        @attempt.status = "valid"
-        @attempt.player.update(status: "alive")
-        @attempt.round.winners += 1
-      else
-        @attempt.status = "invalid"
-      end
+      @attempt.status = status == 0 ? "valid" : "invalid"
       @attempt.spec_output = lines.join
       @attempt.save
+      if status == 0
+        @attempt.round.add_valid_attempt(@attempt)
+      end
     end
   end
 

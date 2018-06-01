@@ -23,11 +23,15 @@ class PlayersController < ApplicationController
 
   def create
     @game = Game.find(params[:game_id])
-    @player = Player.new(player_params)
-    @player.game = @game
-    if (params["player"]["password"] == @game.password) && @player.save!
-      session[:player_id] = @player.id
-      redirect_to game_player_path(@game, @player)
+    if @game.not_started?
+      @player = Player.new(player_params)
+      @player.game = @game
+      if (params["player"]["game_pwd_input"] == @game.password) && @player.save!
+        session[:player_id] = @player.id
+        redirect_to game_player_path(@game, @player)
+      else
+        render :new
+      end
     else
       render :new
     end

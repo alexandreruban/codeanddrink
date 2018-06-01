@@ -4,4 +4,6 @@ class Player < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   validates :status, inclusion: { in: %w[alive defeated playing] }
+
+  attr_accessor :game_pwd_input
 end

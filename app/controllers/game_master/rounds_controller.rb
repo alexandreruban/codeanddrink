@@ -43,15 +43,12 @@ class GameMaster::RoundsController < ApplicationController
   end
 
   def start
-    @round.update(state: "running")
-    @round.winners = 0
-    @round.game.players.where(status: "alive").update_all(status: "playing")
+    @round.start
     redirect_to game_master_game_rounds_path(@game)
   end
 
   def stop
-    @round.update(state: "finished")
-    @game.players.where(status: "playing").update_all(status: "defeated")
+    @round.stop
     redirect_to game_master_game_rounds_path(@game)
   end
 
