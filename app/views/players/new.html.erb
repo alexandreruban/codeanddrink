@@ -1,14 +1,24 @@
 <div class="container">
+  <% if @game.not_started? %>
   <div class="row">
     <div class="col-xs-4 col-xs-offset-4">
       <div class="form-centered">
         <h1>New player</h1>
         <%= simple_form_for [@game, @player] do |f| %>
         <%= f.input :username %>
-        <%= f.input :password, label: "Game password" %>
+        <%= f.input :game_pwd_input, label: "Game password" %>
         <%= f.submit "Join Game", class: "button button-purple button-wide" %>
         <% end %>
       </div>
     </div>
   </div>
+  <% else %>
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="form-centered text-center">
+        <h2>Sorry.<br>Game is closed!</h2>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>
