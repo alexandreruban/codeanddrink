@@ -1,5 +1,20 @@
+latest_round:
+  game: game
+  exercise: exercise
+  state: not started
+  number_of_winners: 1
+  created_at: <%= Date.today + 2 %>
+
 round:
   game: game
   exercise: exercise
   state: not started
   number_of_winners: 1
+  created_at: <%= Date.today %>
+
+later_round:
+  game: game
+  exercise: exercise
+  state: not started
+  number_of_winners: 1
+  created_at: <%= Date.today + 1 %>
