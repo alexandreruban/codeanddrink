@@ -2,15 +2,15 @@
   <div class="row">
     <h1>This is the ranking screen</h1>
     <div class="col-xs-4">
-      <h2>Alive players</h2>
+      <h2>Winners</h2>
       <%= render partial: 'players', locals: { players: @alive_players } %>
     </div>
     <div class="col-xs-4">
-      <h2>Playing players</h2>
+      <h2>Still alive</h2>
       <%= render partial: 'players', locals: { players: @playing_players } %>
     </div>
     <div class="col-xs-4">
-      <h2>Defeated players</h2>
+      <h2>Losers</h2>
       <%= render partial: 'players', locals: { players: @defeated_players } %>
     </div>
   </div>
