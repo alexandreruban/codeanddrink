@@ -15,6 +15,27 @@ games:
 
 exercises:
   - id: 0
+    title: "Hello World"
+    rules: >
+      The classical introductory exercise. Just say "Hello, World!".
+      Write a function that returns the string "Hello, World!".
+    specs: >
+      require "attempt"
+
+      describe "The `hello_world` method" do
+        it "should say Hello, World!" do
+          expect(hi()).to eq("Hello, World!")
+        end
+      end
+    template: >
+      def hi
+        # TODO: Return "Hello, World!" string
+      end
+    solution: >
+      def hi
+        return "Hello, World!"
+      end
+  - id: 1
     title: "Circle Area"
     rules: >
       The goal is to implement a circle_area method which takes one parameter,
@@ -51,35 +72,6 @@ exercises:
         else
           return 0
         end
-      end
-  - id: 1
-    title: "Github Nickname"
-    rules: >
-      Make sure that the method today_my_buddys_github_nickname_is does return
-      (this is different to puts!) the github username of your buddy.
-    specs: >
-      require "attempt"
-
-      describe "#buddy" do
-
-        let(:buddy) { today_my_buddys_github_nickname_is }
-
-        it "should not be blank and be a real github username" do
-          expect(buddy).not_to be_nil
-          expect(buddy).not_to eq('')
-
-          require "open-uri"
-          expect { open("https://github.com/#{buddy}").read }.not_to raise_error,
-            "The buddy '#{buddy}' you returned is not a valid github nickname (check case)"
-        end
-      end
-    template: >
-      def today_my_buddys_github_nickname_is
-        # TODO: Return the GitHub nickname of your buddy.
-      end
-    solution: >
-      def today_my_buddys_github_nickname_is
-        return "Emna"
       end
 
 rounds:
