@@ -1,0 +1,16 @@
+.vertical-between {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - #{$navbar_height} - #{$footer_height});
+}
+
+#game-players {
+  ul {
+    display: flex;
+    justify-content:center;
+  }
+  li {
+    list-style-type: none;
+  }
+}

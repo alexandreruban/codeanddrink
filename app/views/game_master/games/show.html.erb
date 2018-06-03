@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="vertical-between">
+    <div class="row">
+      <div class="col-xs-6">
+        <div id="game-wifi">
+          <h3>Wifi</h3>
+          <p>Network: <%= @game.wifi_network %></p>
+          <p>Password: <%= @game.wifi_password %></p>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div id="game-info">
+          <h3><%= @game.title %></h3>
+          <p><%= @game.description %></p>
+          <p>Password: <%= @game.password %></p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="game-players">
+          <ul>
+            <% @players.each do |player| %>
+            <li>
+              <div class="avatar">
+                <%= player.username %>
+              </div>
+            </li>
+            <% end %>
+          </ul>
+          <p>
+            <%= @players.count %> player(s)
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="game-actions">
+        <%= link_to "Rounds", game_master_game_rounds_path(@game), class: "button-lg button-white" %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
