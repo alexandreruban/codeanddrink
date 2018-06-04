@@ -4,14 +4,23 @@
 
 console.log("Je suis dans games.js");
 
-this.App = {};
+const gameContainer = document.getElementById("game");
+if (gameContainer) {
 
-App.cable = ActionCable.createConsumer();
+  const playerId = gameContainer.dataset.currentPlayer;
+  console.log(playerId);
 
-App.games = App.cable.subscriptions.create('GamesChannel', {
-  received: (data) => {
-    console.log(data);
-    const testsContainer = document.getElementById('tests');
-    testsContainer.innerHTML = data.tests_partial;
-  }
-});
+  this.App = {};
+
+  App.cable = ActionCable.createConsumer();
+
+  App.games = App.cable.subscriptions.create(
+    { channel: 'GamesChannel', player_id: playerId },
+    { received: (data) => {
+      console.log(data);
+      const testsContainer = document.getElementById('tests');
+      testsContainer.innerHTML = data.tests_partial;
+    }
+  });
+}
+

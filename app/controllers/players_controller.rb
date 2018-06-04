@@ -2,6 +2,8 @@ class PlayersController < ApplicationController
   before_action :set_game
   before_action :authenticate_player, only: :show
 
+  helper_method :current_player
+
   def show
     @player = Player.find(params[:id])
 
