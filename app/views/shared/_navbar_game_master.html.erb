@@ -15,13 +15,13 @@
           class: "navbar-wagon-item navbar-wagon-link", id: "navbar-games-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <% current_game_master.games.each do |game| %>
-              <li><%= link_to game.title, game_master_game_rounds_path(game) %></li>
+            <li><%= link_to game.title, game_master_game_path(game) %></li>
             <% end %>
           </ul>
         </div>
       </div>
       <div class="navbar-wagon-item">
-      <%= link_to "Sidekiq", sidekiq_web_path, class: "navbar-wagon-item navbar-wagon-link"%>
+        <%= link_to "Sidekiq", sidekiq_web_path, class: "navbar-wagon-item navbar-wagon-link"%>
       </div>
     </div>
     <!-- Avatar with dropdown menu -->
@@ -48,14 +48,20 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <% if game_master_signed_in? %>
+        <li>
+        <%= link_to "Games", game_master_games_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        </li>
+        <li>
         <li>
           <%= link_to destroy_game_master_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
           <% end %>
         </li>
-        <li>
-          <%= link_to "My games", game_master_games_path %>
+        <% else %>
+        <%= link_to t(".sign_in", default: "Game Master"), new_game_master_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
         </li>
+        <% end %>
       </ul>
     </div>
   </div>

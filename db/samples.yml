@@ -8,7 +8,7 @@ games:
     title: "Let's code and drink!"
     description: "First code then drink! Whatever..."
     wifi_network: "Le Wagon"
-    wifi_password: "allyouneediscodeanddrink"
+    wifi_password: "thestartupway"
     starts_at: "2018-05-29T13:32:34+02:00"
     password: "batch145"
     game_master_id: 0
