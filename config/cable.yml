@@ -8,5 +8,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: redis://redistogo:b2c918fdcd4d644917e7f39c148c9b20@soapfish.redistogo.com:9080/
   channel_prefix: codeanddrink_production
