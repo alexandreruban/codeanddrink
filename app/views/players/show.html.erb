@@ -1,10 +1,22 @@
 <div id="game" data-current-player="<%= current_player.id %>">
   <% if @game.round_running? && @current_player.status == "playing" %>
-  <%= render 'game_screen' %>
+  <%= render 'game_screen',
+    player: @player,
+    round: @round,
+    attempt: @attempt,
+    last_attempt: @last_attempt,
+    exercise: @exercise
+  %>
   <% elsif @game.not_started? %>
-  <%= render 'welcome_screen', players: @players %>
+  <%= render 'welcome_screen',
+    players: @players
+  %>
   <% else %>
-  <%= render 'ranking_screen' %>
+  <%= render 'ranking_screen',
+    alive_players: @alive_players,
+    playing_players: @playing_players,
+    defeated_players: @defeated_players
+  %>
   <% end %>
 </div>
 
