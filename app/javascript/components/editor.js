@@ -2,8 +2,7 @@ import "ace-builds";
 import "ace-builds/webpack-resolver";
 
 function codescreen() {
-  const ed = document.getElementById('editor');
-  if (ed) {
+  if (document.getElementById('editor')) {
     const editor = ace.edit("editor");
     editor.setTheme('ace/theme/monokai');
     editor.session.setMode("ace/mode/ruby");
