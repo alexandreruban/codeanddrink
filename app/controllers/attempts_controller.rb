@@ -11,7 +11,7 @@ class AttemptsController < ApplicationController
     if @attempt.save
       #AttemptValidationJob.new(@attempt.id).perform_now
       AttemptValidationJob.perform_later(@attempt.id)
-      # redirect_to game_player_path(current_player.game, current_player)
+      redirect_to game_player_path(current_player.game, current_player)
     end
   end
 
