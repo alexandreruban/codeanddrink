@@ -30,10 +30,7 @@
             <p><%= @exercise.rules %> </p>
           </div>
           <div role="tabpanel" class="tab-pane" id ="tests" >
-            <div id="spec-output">
-              <p><%= @last_attempts.last.spec_output unless @last_attempts.empty? %></p>
-            </div>
-            <p>Status: <strong><%= @last_attempts.empty? ? "?" : @last_attempts.last.status %></strong> (<%= @last_attempts.count %> attempt(s))</p>
+            <%= render partial: "players/spec_output", locals: { attempt: @last_attempt } %>
           </div>
         </div>
         <!-- div Fin - Zone de text-->
@@ -45,7 +42,7 @@
           <!-- écrire le placeholder du code de l'exercice ici pour l'écrire dans l'éditeur -->
         </div>
           <!-- Hidden components -->
-          <%= simple_form_for [@round, @attempt] do |f| %>
+          <%= simple_form_for [@round, @attempt], remote: true do |f| %>
           <%= hidden_field_tag 'player_id', @player.id %>
           <%= f.input :player_input, input_html: { style: "display:none;" }, label: false %>
           <% end %>

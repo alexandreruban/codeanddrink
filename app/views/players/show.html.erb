@@ -1,10 +1,10 @@
-<div id="game">
+<div id="game" data-current-player="<%= current_player.id %>">
   <% if @game.round_running? && @current_player.status == "playing" %>
-    <%= render 'game_screen' %>
+  <%= render 'game_screen' %>
   <% elsif @game.not_started? %>
-    <%= render 'welcome_screen' %>
+  <%= render 'welcome_screen', players: @players %>
   <% else %>
-    <%= render 'ranking_screen' %>
+  <%= render 'ranking_screen' %>
   <% end %>
 </div>
 

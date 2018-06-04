@@ -14,9 +14,16 @@ class ValidateAttemptService
       @attempt.status = status == 0 ? "valid" : "invalid"
       @attempt.spec_output = lines.join
       @attempt.save
+      ActionCable.server.broadcast "player_#{@attempt.player.id}", {
+        tests_partial: ApplicationController.renderer.render(
+          partial: "players/spec_output",
+          locals: { attempt: @attempt }
+        )
+      }
       if status == 0
         @attempt.round.add_valid_attempt(@attempt)
       end
+
     end
   end
 

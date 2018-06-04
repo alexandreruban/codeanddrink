@@ -2,6 +2,8 @@ class PlayersController < ApplicationController
   before_action :set_game
   before_action :authenticate_player, only: :show
 
+  helper_method :current_player
+
   def show
     @player = Player.find(params[:id])
 
@@ -16,7 +18,7 @@ class PlayersController < ApplicationController
     @exercise = @round.exercise
     @attempt = Attempt.new
     @last_attempts = @round.attempts.where(player: @player)
-    #ne pas oublier de rajouter le "state" lorsque celui-ci sera créé.
+    @last_attempt = @last_attempts.empty? ? nil : @last_attempts.last
   end
 
   def new
