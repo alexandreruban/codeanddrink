@@ -46,9 +46,9 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  config.web_socket_server_url = 'wss://codeanddrink.fun/cable'
-  config.action_cable.url = 'wss://codeanddrink.fun/cable'
-  config.action_cable.allowed_request_origins = [ 'http://codeanddrink.fun' ]
+  config.web_socket_server_url = "wss://#{ENV['HOST']}/cable"
+  config.action_cable.url = "wss://#{ENV['HOST']}/cable"
+  config.action_cable.allowed_request_origins = [ "http://#{ENV['HOST']}", "https://#{ENV['HOST']}" ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = false
