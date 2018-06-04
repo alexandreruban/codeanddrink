@@ -11,5 +11,7 @@ App.cable = ActionCable.createConsumer();
 App.games = App.cable.subscriptions.create('GamesChannel', {
   received: (data) => {
     console.log(data);
+    const testsContainer = document.getElementById('tests');
+    testsContainer.innerHTML = data.tests_partial;
   }
 });

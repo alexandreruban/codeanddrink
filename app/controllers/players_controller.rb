@@ -16,7 +16,7 @@ class PlayersController < ApplicationController
     @exercise = @round.exercise
     @attempt = Attempt.new
     @last_attempts = @round.attempts.where(player: @player)
-    #ne pas oublier de rajouter le "state" lorsque celui-ci sera créé.
+    @last_attempt = @last_attempts.empty? ? nil : @last_attempts.last
   end
 
   def new
