@@ -14,11 +14,13 @@ class Round < ApplicationRecord
   def start
     update(state: "running")
     game.players.where(status: "alive").update_all(status: "playing")
+    ActionCable.server.broadcast 'games', games: "round started"
   end
 
   def stop
     update(state: "finished")
     game.players.where(status: "playing").update_all(status: "defeated")
+    ActionCable.server.broadcast 'games', games: "round stopped"
   end
 
   def add_valid_attempt(attempt)

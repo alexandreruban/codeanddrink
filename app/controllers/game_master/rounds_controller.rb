@@ -45,13 +45,11 @@ class GameMaster::RoundsController < GameMaster::BaseController
   def start
     @round.start
     redirect_to game_master_game_rounds_path(@game)
-    ActionCable.server.broadcast 'games', games: "coucou start"
   end
 
   def stop
     @round.stop
     redirect_to game_master_game_rounds_path(@game)
-    ActionCable.server.broadcast 'games', content: "coucou stop"
   end
 
   private
