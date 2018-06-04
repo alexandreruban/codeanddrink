@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server, at: '/cable'
+
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"
   authenticate :game_master do
