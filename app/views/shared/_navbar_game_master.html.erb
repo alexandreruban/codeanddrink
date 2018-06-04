@@ -15,7 +15,7 @@
           class: "navbar-wagon-item navbar-wagon-link", id: "navbar-games-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <% current_game_master.games.each do |game| %>
-            <li><%= link_to game.title, game_master_game_rounds_path(game) %></li>
+            <li><%= link_to game.title, game_master_game_path(game) %></li>
             <% end %>
           </ul>
         </div>

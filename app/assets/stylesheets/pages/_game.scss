@@ -5,6 +5,15 @@
   height: calc(100vh - #{$navbar_height} - #{$footer_height});
 }
 
+#game-wifi {
+  text-align: right;
+  margin: 48px;
+}
+
+#game-info {
+  margin: 48px;
+}
+
 #game-players {
   ul {
     display: flex;
@@ -13,4 +22,14 @@
   li {
     list-style-type: none;
   }
+  text-align: center;
+}
+
+#game-actions {
+    padding-bottom: 40px;
+    text-align: right;
+}
+
+.avatar {
+  margin: 10px;
 }
