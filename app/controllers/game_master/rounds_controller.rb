@@ -1,6 +1,6 @@
-class GameMaster::RoundsController < ApplicationController
+class GameMaster::RoundsController < GameMaster::BaseController
   before_action :set_game, except: [:destroy]
-  before_action :set_round, except: [:index, :new, :create]
+  before_action :set_round, only: [:show, :edit, :update, :start, :stop]
 
   def index
     @rounds = @game.rounds
@@ -14,6 +14,7 @@ class GameMaster::RoundsController < ApplicationController
   def create
     @round = Round.new(round_params)
     @round.game = @game
+
     if @round.save
       redirect_to game_master_game_rounds_path(@game)
     else
@@ -22,12 +23,10 @@ class GameMaster::RoundsController < ApplicationController
   end
 
   def edit
-    @round = Round.find(params[:id])
     @exercises = Exercise.all
   end
 
   def update
-    @round = Round.find(params[:id])
     if @round.update(round_params)
       redirect_to game_master_game_rounds_path(@game)
     else
@@ -39,6 +38,7 @@ class GameMaster::RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @game = @round.game
     @round.destroy
+
     redirect_to game_master_game_rounds_path(@game)
   end
 
@@ -59,10 +59,10 @@ class GameMaster::RoundsController < ApplicationController
   end
 
   def set_game
-    @game = Game.find(params[:game_id])
+    @game = current_game_master.games.find(params[:game_id])
   end
 
   def set_round
-    @round = Round.find(params[:id])
+    @round = @game.rounds.find(params[:id])
   end
 end
