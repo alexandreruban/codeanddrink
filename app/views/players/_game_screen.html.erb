@@ -43,7 +43,7 @@
         </div>
           <!-- Hidden components -->
           <%= simple_form_for [round, attempt], remote: true do |f| %>
-          <%= hidden_field_tag 'player_id', player.id %>
+          <%= hidden_field_tag 'player_id', nil %>
           <%= f.input :player_input, input_html: { style: "display:none;" }, label: false %>
           <% end %>
           <div id="template" style="display: none"><%= exercise.template %></div>
