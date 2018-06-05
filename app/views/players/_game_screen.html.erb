@@ -27,10 +27,10 @@
         <!-- div zone de texte -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="rules" >
-            <p><%= @exercise.rules %> </p>
+            <p><%= exercise.rules %> </p>
           </div>
           <div role="tabpanel" class="tab-pane" id ="tests" >
-            <%= render partial: "players/spec_output", locals: { attempt: @last_attempt } %>
+            <%= render partial: "players/spec_output", locals: { attempt: last_attempt } %>
           </div>
         </div>
         <!-- div Fin - Zone de text-->
@@ -42,12 +42,12 @@
           <!-- écrire le placeholder du code de l'exercice ici pour l'écrire dans l'éditeur -->
         </div>
           <!-- Hidden components -->
-          <%= simple_form_for [@round, @attempt], remote: true do |f| %>
-          <%= hidden_field_tag 'player_id', @player.id %>
+          <%= simple_form_for [round, attempt], remote: true do |f| %>
+          <%= hidden_field_tag 'player_id', player.id %>
           <%= f.input :player_input, input_html: { style: "display:none;" }, label: false %>
           <% end %>
-          <div id="template" style="display: none"><%= @round.exercise.template %></div>
-          <div id="last_attempt" style="display: none"><%= @last_attempts.last.player_input unless @last_attempts.empty? %></div>
+          <div id="template" style="display: none"><%= exercise.template %></div>
+          <div id="last_attempt" style="display: none"><%= last_attempt.player_input unless last_attempt.nil? %></div>
       </div>
     </div>
   </div>
