@@ -4,23 +4,28 @@
 
 console.log("Je suis dans games.js");
 
+let gameId = undefined;
+let playerId = undefined;
 const gameContainer = document.getElementById("game");
-if (gameContainer) {
+if (gameContainer != null) {
+  gameId = gameContainer.dataset.currentGame;
+  playerId = gameContainer.dataset.currentPlayer;
+}
+console.log("GameId:" + gameId)
+console.log("playerId:" + playerId)
 
-  const playerId = gameContainer.dataset.currentPlayer;
-  console.log(playerId);
+if ((gameId != undefined) || (playerId != undefined)) {
 
   this.App = {};
 
   App.cable = ActionCable.createConsumer();
 
   App.games = App.cable.subscriptions.create(
-    { channel: 'GamesChannel', player_id: playerId },
+    { channel: 'GamesChannel', game_id: gameId, player_id: playerId },
     { received: (data) => {
       console.log(data);
-      const testsContainer = document.getElementById('tests');
-      testsContainer.innerHTML = data.tests_partial;
+      //const testsContainer = document.getElementById('tests');
+      //testsContainer.innerHTML = data.tests_partial;
     }
   });
 }
-
