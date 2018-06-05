@@ -23,9 +23,12 @@ function codescreen() {
     const reset = document.getElementById("reset");
     const template = document.getElementById("template");
     const last_template = document.getElementById("last_attempt");
+    const headToken = document.head.querySelector("[name=csrf-token]").content;
+    const authentToken = document.querySelector("[name=authenticity_token]");
     if (submit) {
       submit.addEventListener('click', (event) => {
         event.preventDefault();
+        authentToken.value = headToken;
         input.value = editor.getValue();
         inputPlayer.value = game.dataset.currentPlayer;
         form.submit();
