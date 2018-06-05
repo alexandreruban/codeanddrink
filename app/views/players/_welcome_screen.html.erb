@@ -1,12 +1,16 @@
 <div class="banner" style="background-image: linear-gradient(-204deg, rgba(134,0,245,1) 36%, rgba(134,0,245,0.4) 61%), url('<%= image_path 'screen_wait.svg' %>');">
   <div class="container">
     <h1> Game will be starting soon </h1>
-      <div id="listing-player">
-      <h3> connected players </h3>
+    <h3> connected players </h3>
+    <div id="game-players">
       <ul class="list-unstyled">
-      <% players.each do |player| %>
-      <li><%= player.username %></li>
-      <% end %>
+        <% players.each do |player| %>
+        <li>
+          <div class="avatar">
+            <%= player.username %>
+          </div>
+        </li>
+        <% end %>
       </ul>
     </div>
   </div>

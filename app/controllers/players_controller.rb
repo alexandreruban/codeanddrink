@@ -6,7 +6,7 @@ class PlayersController < ApplicationController
 
   def show
     # game not started or you won / lose
-    @players = @game.players
+    @players = @game.players.order(created_at: :asc)
     @players_status = {
       alive_players: @players.select { |player| player.status == "alive" },
       defeated_players: @players.select { |player| player.status == "defeated" },
@@ -39,9 +39,9 @@ class PlayersController < ApplicationController
             players_partial: ApplicationController.renderer.render(
               partial: "players/players",
               locals: {
-                players: @game.players
+                players: @game.players.order(created_at: :asc)
               }
-              )
+            )
           }
         else
           render :new
