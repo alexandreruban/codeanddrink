@@ -50,7 +50,7 @@ class Round < ApplicationRecord
     if state == "running" && attempt.status == "valid"
       attempt.player.update(status: "alive")
       ActionCable.server.broadcast "player_#{attempt.player.id}", {
-        message: "round stopped",
+        message: "successful attempt",
         ranking_partial: ApplicationController.renderer.render(
           partial: "players/ranking_screen",
           locals: {
@@ -60,7 +60,20 @@ class Round < ApplicationRecord
               defeated_players: self.game.players.select { |player| player.status == "defeated" }
             }
           }
-          )
+        )
+      }
+      ActionCable.server.broadcast "game_#{attempt.round.game.id}", {
+        message: "new ranking",
+        new_ranking_partial: ApplicationController.renderer.render(
+          partial: "players/ranking_screen",
+          locals: {
+            players: {
+              alive_players: self.game.players.select { |player| player.status == "alive" },
+              playing_players: self.game.players.select { |player| player.status == "playing" },
+              defeated_players: self.game.players.select { |player| player.status == "defeated" }
+            }
+          }
+        )
       }
       winners_count = attempts.where(status: "valid").group(:player).count.size
       if winners_count == number_of_winners

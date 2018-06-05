@@ -1,18 +1,21 @@
-<div class="banner" style="background-image: linear-gradient(-190deg, rgba(134,0,245,1) 43%, rgba(134,0,245,0.4) 57%), url('<%= image_path 'screen_ranking.svg' %>');">
-<div class="container">
-  <div class="row">
-    <h1>This is the ranking screen</h1>
-    <div class="col-xs-4">
-      <h2>Winners</h2>
-      <%= render partial: 'players/players', locals: { players: players[:alive_players] } %>
-    </div>
-    <div class="col-xs-4">
-      <h2>Still alive</h2>
-      <%= render partial: 'players/players', locals: { players: players[:playing_players] } %>
-    </div>
-    <div class="col-xs-4">
-      <h2>Losers</h2>
-      <%= render partial: 'players/players', locals: { players: players[:defeated_players] } %>
+<div id="ranking">
+  <div class="banner" style="background-image: linear-gradient(-190deg, rgba(134,0,245,1) 43%, rgba(134,0,245,0.4) 57%), url('<%= image_path 'screen_ranking.svg' %>');">
+    <div class="container">
+      <div class="row">
+        <h1>This is the ranking screen</h1>
+        <div class="col-xs-4">
+          <h2>Winners</h2>
+          <%= render partial: 'players/players', locals: { players: players[:alive_players] } %>
+        </div>
+        <div class="col-xs-4">
+          <h2>Still alive</h2>
+          <%= render partial: 'players/players', locals: { players: players[:playing_players] } %>
+        </div>
+        <div class="col-xs-4">
+          <h2>Losers</h2>
+          <%= render partial: 'players/players', locals: { players: players[:defeated_players] } %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
