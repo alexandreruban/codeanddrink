@@ -5,13 +5,13 @@ class PlayersController < ApplicationController
   helper_method :current_player
 
   def show
-    @player = Player.find(params[:id])
-
     # game not started or you won / lose
     @players = @game.players
-    @alive_players = @players.select { |player| player.status == "alive" }
-    @defeated_players = @players.select { |player| player.status == "defeated" }
-    @playing_players = @players.select { |player| player.status == "playing" }
+    @players_status = {
+      alive_players: @players.select { |player| player.status == "alive" },
+      defeated_players: @players.select { |player| player.status == "defeated" },
+      playing_players: @players.select { |player| player.status == "playing" }
+    }
 
     # round running
     @round = @game.rounds.find_by(state: "running") || @game.rounds.first

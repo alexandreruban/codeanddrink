@@ -15,8 +15,10 @@ function codescreen() {
       readOnly: true // false if this command should not apply in readOnly mode
     });
 
+    const game =  document.getElementById("game");
     const form = document.getElementById("new_attempt");
     const input = document.getElementById("attempt_player_input");
+    const inputPlayer = document.getElementById("player_id");
     const submit = document.getElementById("submit");
     const reset = document.getElementById("reset");
     const template = document.getElementById("template");
@@ -25,6 +27,7 @@ function codescreen() {
       submit.addEventListener('click', (event) => {
         event.preventDefault();
         input.value = editor.getValue();
+        inputPlayer.value = game.dataset.currentPlayer;
         form.submit();
       });
     }

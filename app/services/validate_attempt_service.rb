@@ -15,6 +15,7 @@ class ValidateAttemptService
       @attempt.spec_output = lines.join
       @attempt.save
       ActionCable.server.broadcast "player_#{@attempt.player.id}", {
+        message: "attempt",
         tests_partial: ApplicationController.renderer.render(
           partial: "players/spec_output",
           locals: { attempt: @attempt }
