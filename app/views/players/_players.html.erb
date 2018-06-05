@@ -1,7 +1,9 @@
 <ul>
   <% players.each do |player| %>
     <li>
-      <%= player.username %>
+      <div class="avatar">
+        <%= player.username %>
+      </div>
     </li>
   <% end %>
 </ul>

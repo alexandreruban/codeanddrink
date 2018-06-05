@@ -34,6 +34,15 @@ class PlayersController < ApplicationController
         if @player.save
           session[:player_id] = @player.id
           redirect_to game_player_path(@game, @player)
+          ActionCable.server.broadcast "game_#{@game.id}", {
+            message: "new player",
+            players_partial: ApplicationController.renderer.render(
+              partial: "players/players",
+              locals: {
+                players: @game.players
+              }
+              )
+          }
         else
           render :new
         end

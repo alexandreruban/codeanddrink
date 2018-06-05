@@ -1,3 +1,4 @@
+
 //= require action_cable
 //= require_self
 //= require_tree .
@@ -21,7 +22,9 @@ if ((gameId != undefined) || (playerId != undefined)) {
   App.games = App.cable.subscriptions.create(
     { channel: 'GamesChannel', game_id: gameId, player_id: playerId },
     { received: (data) => {
-      if (data.message === "round started") {
+      if (data.message === "new player") {
+        onNewPlayer(data);
+      } else if (data.message === "round started") {
         onRoundStarted(data);
       } else if (data.message === "attempt") {
         onAttempt(data);
@@ -32,6 +35,13 @@ if ((gameId != undefined) || (playerId != undefined)) {
   });
 }
 
+function onNewPlayer(data) {
+  const playersContainer = document.getElementById('game-players');
+  if (playersContainer) {
+    playersContainer.innerHTML = data.players_partial;
+  }
+}
+
 function onRoundStarted(data) {
   gameContainer.innerHTML = data.game_partial;
   window.codescreen();
@@ -39,7 +49,9 @@ function onRoundStarted(data) {
 
 function onAttempt(data) {
   const testsContainer = document.getElementById('tests');
-  testsContainer.innerHTML = data.tests_partial;
+  if (testsContainer) {
+    testsContainer.innerHTML = data.tests_partial;
+  }
 }
 
 function onRoundStopped(data) {
