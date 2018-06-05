@@ -6,7 +6,14 @@
         <h1>New player</h1>
         <%= simple_form_for [@game, @player] do |f| %>
         <%= f.input :username %>
-        <%= f.input :game_pwd_input, label: "Game password" %>
+          <div class="form-group">
+            <label for="player_game_pwd_input">Game Password</label>
+            <input class="form-control" type="text" name="player[game_pwd_input]" id="player_game_pwd_input" required >
+            <% if @invalid_password %>
+              <div id="error-message"> <p>Password is invalid</p> </div>
+            <% end %>
+          </div>
+        <br>
         <%= f.submit "Join Game", class: "button button-purple button-wide" %>
         <% end %>
       </div>
