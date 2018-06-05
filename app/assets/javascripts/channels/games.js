@@ -33,7 +33,8 @@ if ((gameId != undefined) || (playerId != undefined)) {
 }
 
 function onRoundStarted(data) {
-  gameContainer.innerHTML = data.game_partial;
+  const gameFrame = document.getElementById("game-frame");
+  gameFrame.innerHTML = data.game_partial;
   window.codescreen();
 }
 
@@ -43,5 +44,6 @@ function onAttempt(data) {
 }
 
 function onRoundStopped(data) {
-  gameContainer.innerHTML = data.ranking_partial;
+  const gameFrame = document.getElementById("game-frame");
+  gameFrame.innerHTML = data.ranking_partial;
 }
