@@ -40,18 +40,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div id="game-players">
-          <ul>
-            <% @players.each do |player| %>
-            <li>
-              <div class="avatar">
-                <%= player.username %>
-              </div>
-            </li>
-            <% end %>
-          </ul>
-          <p>
-            <strong> <%= @players.count %> player(s) </strong>
-          </p>
+          <%= render partial: 'players/players', locals: { players: @players } %>
         </div>
       </div>
     </div>
