@@ -24,8 +24,8 @@ if ((gameId != undefined) || (playerId != undefined)) {
     { channel: 'GamesChannel', game_id: gameId, player_id: playerId },
     { received: (data) => {
       console.log(data);
-      //const testsContainer = document.getElementById('tests');
-      //testsContainer.innerHTML = data.tests_partial;
+      const testsContainer = document.getElementById('tests');
+      testsContainer.innerHTML = data.tests_partial;
     }
   });
 }
