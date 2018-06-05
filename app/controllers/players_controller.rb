@@ -30,12 +30,18 @@ class PlayersController < ApplicationController
       @player = Player.new(player_params)
       @player.game = @game
 
-      if (params["player"]["game_pwd_input"] == @game.password) && @player.save!
-        session[:player_id] = @player.id
-        redirect_to game_player_path(@game, @player)
+      if (params["player"]["game_pwd_input"] == @game.password)
+        if @player.save
+          session[:player_id] = @player.id
+          redirect_to game_player_path(@game, @player)
+        else
+          render :new
+        end
       else
+        @invalid_password = true
         render :new
       end
+
     else
       render :new
     end
