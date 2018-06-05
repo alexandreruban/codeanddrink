@@ -28,8 +28,10 @@ if ((gameId != undefined) || (playerId != undefined)) {
         onRoundStarted(data);
       } else if (data.message === "attempt") {
         onAttempt(data);
-      } else if (data.message === "round stopped") {
+      } else if (data.message === "round stopped" || data.message === "successful attempt") {
         onRoundStopped(data);
+      } else if (data.message === "new ranking") {
+        onNewRanking(data);
       }
     }
   });
@@ -58,4 +60,11 @@ function onAttempt(data) {
 function onRoundStopped(data) {
   const gameFrame = document.getElementById("game-frame");
   gameFrame.innerHTML = data.ranking_partial;
+}
+
+function onNewRanking(data) {
+  const ranking = document.getElementById("ranking");
+  if (ranking) {
+    ranking.innerHTML = data.new_ranking_partial;
+  }
 }
