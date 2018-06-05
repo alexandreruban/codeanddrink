@@ -24,7 +24,7 @@ class Round < ApplicationRecord
           last_attempt: nil,
           exercise: self.exercise
         }
-      )
+        )
     }
   end
 
@@ -42,13 +42,26 @@ class Round < ApplicationRecord
             defeated_players: self.game.players.select { |player| player.status == "defeated" }
           }
         }
-      )
+        )
     }
   end
 
   def add_valid_attempt(attempt)
     if state == "running" && attempt.status == "valid"
       attempt.player.update(status: "alive")
+      ActionCable.server.broadcast "player_#{attempt.player.id}", {
+        message: "round stopped",
+        ranking_partial: ApplicationController.renderer.render(
+          partial: "players/ranking_screen",
+          locals: {
+            players: {
+              alive_players: self.game.players.select { |player| player.status == "alive" },
+              playing_players: self.game.players.select { |player| player.status == "playing" },
+              defeated_players: self.game.players.select { |player| player.status == "defeated" }
+            }
+          }
+          )
+      }
       winners_count = attempts.where(status: "valid").group(:player).count.size
       if winners_count == number_of_winners
         stop
