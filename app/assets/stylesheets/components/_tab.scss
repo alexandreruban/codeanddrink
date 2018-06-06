@@ -3,6 +3,7 @@
   & .nav-link{
   color: white;
   margin: 50px 0 50px 0;
+  text-decoration: none;
 }
 
   & .nav-item{
@@ -20,7 +21,7 @@
 }
 
   & h3 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: bold;
 }
 }
@@ -43,3 +44,7 @@ p {
 #spec-output p {
   white-space: pre-line;
 }
+#rules p {
+  white-space: pre-line;
+}
+

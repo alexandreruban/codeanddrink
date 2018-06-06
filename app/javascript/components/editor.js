@@ -38,12 +38,17 @@ function codescreen() {
       reset.addEventListener('click', (event) => {
         event.preventDefault();
         editor.setValue(template.innerHTML);
+        editor.clearSelection();
+        editor.focus();
       });
     }
     if (last_attempt.innerHTML == "") {
       editor.setValue(template.innerText);
+      editor.clearSelection();
+      editor.focus();
     } else {
       editor.setValue(last_attempt.innerText);
+      editor.clearSelection();
     }
   }
 }

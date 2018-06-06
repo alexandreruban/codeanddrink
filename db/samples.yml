@@ -16,8 +16,11 @@ games:
 exercises:
   - id: 0
     title: "Hello World"
-    rules: >
-      The classical introductory exercise. Just say "Hello, World!".
+    rules: |
+      The classical introductory exercise.
+
+      Just say "Hello, World!".
+
       Write a function that returns the string "Hello, World!".
     specs: >
       require "attempt"
@@ -37,10 +40,10 @@ exercises:
       end
   - id: 1
     title: "Circle Area"
-    rules: >
-      The goal is to implement a circle_area method which takes one parameter,
-      radius, and returns the area of the circle of this given radius. As a reminder,
-      here is the formula: 'A = pi * (r * r)'
+    rules: |
+      The goal is to implement a circle_area method which takes one parameter, radius, and returns the area of the circle of this given radius.
+
+      As a reminder, here is the formula: A = PI * (r * r)
     specs: >
       require "attempt"
 
