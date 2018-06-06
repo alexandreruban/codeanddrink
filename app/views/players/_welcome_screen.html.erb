@@ -7,7 +7,8 @@
         <% players.each do |player| %>
         <li>
           <div class="avatar">
-            <%= player.username %>
+            <img id="<%= player.username %>" />
+            <p><%= player.username %></p>
           </div>
         </li>
         <% end %>

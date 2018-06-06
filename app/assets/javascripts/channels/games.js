@@ -1,4 +1,3 @@
-
 //= require action_cable
 //= require_self
 //= require_tree .
@@ -42,6 +41,7 @@ function onNewPlayer(data) {
   const playersContainer = document.getElementById('game-players');
   if (playersContainer) {
     playersContainer.innerHTML = data.players_partial;
+    renderAllIdenticons();
   }
 }
 
@@ -49,23 +49,27 @@ function onRoundStarted(data) {
   const gameFrame = document.getElementById("game-frame");
   gameFrame.innerHTML = data.game_partial;
   window.codescreen();
+  renderAllIdenticons();
 }
 
 function onAttempt(data) {
   const testsContainer = document.getElementById('tests');
   if (testsContainer) {
     testsContainer.innerHTML = data.tests_partial;
+    renderAllIdenticons();
   }
 }
 
 function onRoundStopped(data) {
   const gameFrame = document.getElementById("game-frame");
   gameFrame.innerHTML = data.ranking_partial;
+  renderAllIdenticons();
 }
 
 function onNewRanking(data) {
   const ranking = document.getElementById("ranking");
   if (ranking) {
     ranking.innerHTML = data.new_ranking_partial;
+    renderAllIdenticons();
   }
 }
