@@ -26,9 +26,9 @@ if ((gameId != undefined) || (playerId != undefined)) {
       } else if (data.message === "round started") {
         onRoundStarted(data);
       } else if (data.message === "attempt") {
+        onAttempt(data);
       } else if (data.message === "round stopped" || data.message === "successful attempt") {
         onRoundStopped(data);
-        onAttempt(data);
       } else if (data.message === "new ranking") {
         onNewRanking(data);
       }
