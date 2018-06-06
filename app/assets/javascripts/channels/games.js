@@ -85,7 +85,7 @@ function onFinalStarted(data) {
   if (editor) {
     editor.addEventListener('keyup', function(event) {
       console.log(content.innerText);
-      const url = "http://localhost:3000/games/" + gameId + "/players/" + playerId + "/content";
+      const url = window.location.href + "/content";
       console.log(url);
       fetch(url, {
         method: "POST",
