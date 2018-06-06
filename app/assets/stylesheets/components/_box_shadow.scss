@@ -6,3 +6,13 @@
 .box-shadow:hover {
   box-shadow: 0 0 30px $dark-transparent;
 }
+
+.box-shadow-winner {
+  box-shadow: 0 0 20px $green;
+  border: solid 3px $green;
+}
+
+.box-shadow-loser {
+  box-shadow: 0 0 20px $red;
+  border: solid 3px $red;
+}
