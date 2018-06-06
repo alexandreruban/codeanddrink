@@ -7,11 +7,6 @@ class PlayersController < ApplicationController
   def show
     # game not started or you won / lose
     @players = @game.players.order(created_at: :asc)
-    @players_status = {
-      alive_players: @players.select { |player| player.status == "alive" },
-      defeated_players: @players.select { |player| player.status == "defeated" },
-      playing_players: @players.select { |player| player.status == "playing" }
-    }
 
     # round running
     @round = @game.rounds.find_by(state: "running") || @game.rounds.first

@@ -39,11 +39,7 @@ class Round < ApplicationRecord
       ranking_partial: ApplicationController.renderer.render(
         partial: "players/ranking_screen",
         locals: {
-          players: {
-            alive_players: game.players.select { |player| player.status == "alive" },
-            playing_players: game.players.select { |player| player.status == "playing" },
-            defeated_players: game.players.select { |player| player.status == "defeated" }
-          }
+          players: game.players.order(created_at: :asc)
         }
       )
     }
@@ -57,11 +53,7 @@ class Round < ApplicationRecord
         ranking_partial: ApplicationController.renderer.render(
           partial: "players/ranking_screen",
           locals: {
-            players: {
-              alive_players: game.players.select { |player| player.status == "alive" },
-              playing_players: game.players.select { |player| player.status == "playing" },
-              defeated_players: game.players.select { |player| player.status == "defeated" }
-            }
+            players: game.players.order(created_at: :asc)
           }
         )
       }
@@ -70,11 +62,7 @@ class Round < ApplicationRecord
         new_ranking_partial: ApplicationController.renderer.render(
           partial: "players/ranking_screen",
           locals: {
-            players: {
-              alive_players: game.players.select { |player| player.status == "alive" },
-              playing_players: game.players.select { |player| player.status == "playing" },
-              defeated_players: game.players.select { |player| player.status == "defeated" }
-            }
+            players: game.players.order(created_at: :asc)
           }
         )
       }
