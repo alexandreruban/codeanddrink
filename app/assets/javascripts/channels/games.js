@@ -80,19 +80,18 @@ function onNewRanking(data) {
 
 function onFinalStarted(data) {
   const editor = document.getElementById("editor");
-  const content = document.querySelector(".ace_content");
-  const headToken = document.head.querySelector("[name=csrf-token]").content;
   if (editor) {
+    const content = document.querySelector(".ace_content");
+    const headToken = document.head.querySelector("[name=csrf-token]").content;
     editor.addEventListener('keyup', function(event) {
-      console.log(content.innerText);
       const url = window.location.href + "/content";
-      console.log(url);
       fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-Token": headToken
+          'X-CSRF-Token': headToken
         },
+        credentials: 'same-origin',
         body: JSON.stringify({ content: content.innerText })
       });
     });
@@ -101,9 +100,9 @@ function onFinalStarted(data) {
 
 function onNewFinalContent(data) {
     const editor = document.getElementById("editor-" + data.player_id);
-    console.log(editor);
     if (editor) {
-      const content = editor.querySelector(".ace_content");
-      content.innerText = data.content;
+      aceEditor = ace.edit(editor);
+      aceEditor.setValue(data.content);
+      aceEditor.clearSelection();
     }
 }
