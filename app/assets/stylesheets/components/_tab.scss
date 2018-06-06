@@ -10,7 +10,7 @@
     padding-left: 60px;
     padding-right: 60px;
     margin-top: 15px;
-    background: $purple;
+    background: $light-purple;
 }
 
   & a:hover {
@@ -31,13 +31,14 @@ p {
 
 #custom-tabs{
   & .active{
-  background: $yellow;
+  background: $purple;
 }
 }
 
 #spec-output {
   height: 300px;
   overflow: auto;
+  min-height: 65vh;
 }
 #spec-output p {
   white-space: pre-line;
