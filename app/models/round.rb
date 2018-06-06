@@ -24,21 +24,24 @@ class Round < ApplicationRecord
           last_attempt: nil,
           exercise: self.exercise
         }
-        )
+      )
     }
   end
 
   def stop
-    update(state: "finished")
     game.players.where(status: "playing").update_all(status: "defeated")
+    game.players.reload # do not remove me (thanks to update_all and select)!!
+
+    update(state: "finished")
+
     ActionCable.server.broadcast "game_#{game.id}", {
       message: "round stopped",
       ranking_partial: ApplicationController.renderer.render(
         partial: "players/ranking_screen",
         locals: {
-          players: game.players
+          players: game.players.order(created_at: :asc)
         }
-        )
+      )
     }
   end
 
@@ -50,7 +53,7 @@ class Round < ApplicationRecord
         ranking_partial: ApplicationController.renderer.render(
           partial: "players/ranking_screen",
           locals: {
-            players: game.players
+            players: game.players.order(created_at: :asc)
           }
         )
       }
@@ -59,7 +62,7 @@ class Round < ApplicationRecord
         new_ranking_partial: ApplicationController.renderer.render(
           partial: "players/ranking_screen",
           locals: {
-            players: game.players
+            players: game.players.order(created_at: :asc)
           }
         )
       }

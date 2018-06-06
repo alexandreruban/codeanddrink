@@ -21,6 +21,7 @@ if ((gameId != undefined) || (playerId != undefined)) {
   App.games = App.cable.subscriptions.create(
     { channel: 'GamesChannel', game_id: gameId, player_id: playerId },
     { received: (data) => {
+      console.log(data);
       if (data.message === "new player") {
         onNewPlayer(data);
       } else if (data.message === "round started") {
