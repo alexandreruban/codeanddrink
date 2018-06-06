@@ -2,7 +2,7 @@
   <% players.each do |player| %>
   <li>
     <div class="avatar">
-      <img id="<%= player.username %>" />
+      <img id="<%= player.username %>" class="box-shadow-<%= player.status %>" />
       <p><%= player.username %><p>
     </div>
   </li>
