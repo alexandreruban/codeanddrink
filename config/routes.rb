@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   devise_for :game_masters
 
   resources :games, only: [:show] do
-    resources :players, only: [:new, :create, :show, :destroy]
+    resources :players, only: [:new, :create, :show, :destroy] do
+      member do
+        post :content
+      end
+    end
   end
 
   resources :rounds, only: [] do
@@ -26,6 +30,7 @@ Rails.application.routes.draw do
           patch :start
           patch :stop
           patch :update_number_of_winners
+          get :final
         end
       end
     end

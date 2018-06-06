@@ -1,6 +1,6 @@
 class GameMaster::RoundsController < GameMaster::BaseController
   before_action :set_game, except: [:destroy]
-  before_action :set_round, only: [:show, :edit, :update, :start, :stop]
+  before_action :set_round, only: [:show, :edit, :update, :start, :stop, :final]
 
   def index
     @rounds = @game.rounds
@@ -50,6 +50,22 @@ class GameMaster::RoundsController < GameMaster::BaseController
   def stop
     @round.stop
     redirect_to game_master_game_rounds_path(@game)
+  end
+
+  def final
+    @exercise = @round.exercise
+    @final_players = @game.players.where(status: "playing");
+    @player0 = @final_players[0]
+    @player1 = @final_players[1]
+    @last_attempt0 = @round.attempts.where(player: @player0).last;
+    @last_attempt1 = @round.attempts.where(player: @player1).last;
+
+    ActionCable.server.broadcast "player_#{@player0.id}", {
+      message: "final started"
+    }
+    ActionCable.server.broadcast "player_#{@player1.id}", {
+      message: "final started"
+    }
   end
 
   private

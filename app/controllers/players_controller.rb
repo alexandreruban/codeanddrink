@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   before_action :set_game
   before_action :authenticate_player, only: :show
+  skip_before_action :verify_authenticity_token, only: :content
 
   helper_method :current_player
 
@@ -36,7 +37,7 @@ class PlayersController < ApplicationController
               locals: {
                 players: @game.players.order(created_at: :asc)
               }
-            )
+              )
           }
         else
           render :new
@@ -49,6 +50,14 @@ class PlayersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def content
+    ActionCable.server.broadcast "game_#{@game.id}", {
+      message: "new final content",
+      player_id: params[:id],
+      content: params[:content]
+    }
   end
 
   private

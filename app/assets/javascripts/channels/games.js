@@ -32,6 +32,10 @@ if ((gameId != undefined) || (playerId != undefined)) {
         onRoundStopped(data);
       } else if (data.message === "new ranking") {
         onNewRanking(data);
+      } else if (data.message === "final started") {
+        onFinalStarted(data);
+      } else if (data.message === "new final content") {
+        onNewFinalContent(data);
       }
     }
   });
@@ -72,4 +76,34 @@ function onNewRanking(data) {
     ranking.innerHTML = data.new_ranking_partial;
     renderAllIdenticons();
   }
+}
+
+function onFinalStarted(data) {
+  const editor = document.getElementById("editor");
+  const content = document.querySelector(".ace_content");
+  const headToken = document.head.querySelector("[name=csrf-token]").content;
+  if (editor) {
+    editor.addEventListener('keyup', function(event) {
+      console.log(content.innerText);
+      const url = "http://localhost:3000/games/" + gameId + "/players/" + playerId + "/content";
+      console.log(url);
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": headToken
+        },
+        body: JSON.stringify({ content: content.innerText })
+      });
+    });
+  }
+}
+
+function onNewFinalContent(data) {
+    const editor = document.getElementById("editor-" + data.player_id);
+    console.log(editor);
+    if (editor) {
+      const content = editor.querySelector(".ace_content");
+      content.innerText = data.content;
+    }
 }
