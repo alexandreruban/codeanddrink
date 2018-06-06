@@ -1,4 +1,3 @@
-
 //= require action_cable
 //= require_self
 //= require_tree .
@@ -27,9 +26,9 @@ if ((gameId != undefined) || (playerId != undefined)) {
       } else if (data.message === "round started") {
         onRoundStarted(data);
       } else if (data.message === "attempt") {
-        onAttempt(data);
       } else if (data.message === "round stopped" || data.message === "successful attempt") {
         onRoundStopped(data);
+        onAttempt(data);
       } else if (data.message === "new ranking") {
         onNewRanking(data);
       }
@@ -41,6 +40,7 @@ function onNewPlayer(data) {
   const playersContainer = document.getElementById('game-players');
   if (playersContainer) {
     playersContainer.innerHTML = data.players_partial;
+    renderAllIdenticons();
   }
 }
 
@@ -48,23 +48,27 @@ function onRoundStarted(data) {
   const gameFrame = document.getElementById("game-frame");
   gameFrame.innerHTML = data.game_partial;
   window.codescreen();
+  renderAllIdenticons();
 }
 
 function onAttempt(data) {
   const testsContainer = document.getElementById('tests');
   if (testsContainer) {
     testsContainer.innerHTML = data.tests_partial;
+    renderAllIdenticons();
   }
 }
 
 function onRoundStopped(data) {
   const gameFrame = document.getElementById("game-frame");
   gameFrame.innerHTML = data.ranking_partial;
+  renderAllIdenticons();
 }
 
 function onNewRanking(data) {
   const ranking = document.getElementById("ranking");
   if (ranking) {
     ranking.innerHTML = data.new_ranking_partial;
+    renderAllIdenticons();
   }
 }
