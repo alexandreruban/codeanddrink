@@ -12,6 +12,11 @@ class AttemptsController < ApplicationController
       #AttemptValidationJob.new(@attempt.id).perform_now
       AttemptValidationJob.perform_later(@attempt.id)
     end
+
+    respond_to do |format|
+      format.html { redirect_to game_player_path(current_player.game, current_player) }
+      format.js
+    end
   end
 
   private

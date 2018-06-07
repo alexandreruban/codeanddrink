@@ -1,5 +1,5 @@
  <div style="background-size: cover; background-image: url('<%= image_path 'screen_spectator.svg' %>');">
-  <div id="game" data-current-game="<%= @game.id %>" data-current-game-master="<%= current_game_master.id %>"></div>  
+  <div id="game" data-current-game="<%= @game.id %>" data-current-game-master="<%= current_game_master.id %>"></div>
   <div class="container">
   <div id="game" data-current-game="<%= @game.id %>"></div>
   <div class="vertical-between">
@@ -8,8 +8,8 @@
         <div class="card">
           <span class="badge">1</span>
           <div id="game-info">
-            <h3>connect to the wifi</h3>
-            <p> Network: <%= @game.wifi_network %></p>
+            <h3>Connect to Wi-Fi</h3>
+            <p>Network: <%= @game.wifi_network %></p>
             <p>Password: <%= @game.wifi_password %></p>
           </div>
         </div>
@@ -18,10 +18,10 @@
         <div class="card">
           <span class="badge">2</span>
             <div id="game-info">
-              <h3>Join the game</h3>
-              <p>Go to codeanddrink.fun</p>
+              <h3>Join the Game</h3>
+              <p>Go to <strong>codeanddrink.fun</strong></p>
               <p>Choose your username </p>
-              <p>Enter the game password: <%= @game.password %></p>
+              <p>Enter the game password: <strong><%= @game.password %></strong></p>
             </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
           <span class="badge">3</span>
             <div id="game-info">
               <h3><%= @game.title %></h3>
-              <p>Wait for the game to start</p>
+              <p><strong>Wait for the game to start</strong></p>
               <p><%= @game.description %></p>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <ul class="list-unstyled">
   <% players.each do |player| %>
   <li>
-    <div class="avatar">
+    <div class="avatar avatar-<%= player.status %>">
       <img id="<%= player.username %>" class="box-shadow-<%= player.status %>" />
       <p><%= player.username %></p>
     </div>
