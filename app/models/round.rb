@@ -34,7 +34,7 @@ class Round < ApplicationRecord
       players_partial: ApplicationController.renderer.render(
         partial: "players/players",
         locals: {
-          players: game.players
+          players: game.players.order(created_at: :asc)
         }
       )
     }
@@ -61,7 +61,7 @@ class Round < ApplicationRecord
       players_partial: ApplicationController.renderer.render(
         partial: "players/players",
         locals: {
-          players: game.players
+          players: game.players.order(created_at: :asc)
         }
       )
     }
@@ -94,7 +94,7 @@ class Round < ApplicationRecord
         players_partial: ApplicationController.renderer.render(
           partial: "players/players",
           locals: {
-            players: game.players
+            players: game.players.order(created_at: :asc)
           }
         )
       }
