@@ -14,6 +14,7 @@ class Round < ApplicationRecord
   def start
     update(state: "running")
     game.players.where(status: "alive").update_all(status: "playing")
+    final = game.players.where.not(status: "defeated").count == 2;
     ActionCable.server.broadcast "game_#{game.id}", {
       message: "round started",
       game_partial: ApplicationController.renderer.render(
@@ -22,7 +23,8 @@ class Round < ApplicationRecord
           round: self,
           attempt: Attempt.new,
           last_attempt: nil,
-          exercise: self.exercise
+          exercise: self.exercise,
+          final: final
         }
       )
     }

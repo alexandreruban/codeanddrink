@@ -14,6 +14,7 @@ class PlayersController < ApplicationController
     @attempt = Attempt.new
     @last_attempts = @round.attempts.where(player: @player)
     @last_attempt = @last_attempts.empty? ? nil : @last_attempts.last
+    @final = @game.players.where.not(status: "defeated").count == 2;
   end
 
   def new
@@ -52,7 +53,7 @@ class PlayersController < ApplicationController
   end
 
   def content
-    ActionCable.server.broadcast "game_#{@game.id}", {
+    ActionCable.server.broadcast "game_master_#{@game.game_master.id}", {
       message: "new final content",
       player_id: params[:id],
       content: params[:content]

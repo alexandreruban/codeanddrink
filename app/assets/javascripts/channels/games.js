@@ -4,22 +4,25 @@
 
 let gameId = undefined;
 let playerId = undefined;
+let gameMasterId = undefined;
 const gameContainer = document.getElementById("game");
 if (gameContainer != null) {
   gameId = gameContainer.dataset.currentGame;
   playerId = gameContainer.dataset.currentPlayer;
+  gameMasterId = gameContainer.dataset.currentGameMaster;
 }
 console.log("GameId:" + gameId)
 console.log("playerId:" + playerId)
+console.log("gameMasterId:" + gameMasterId)
 
-if ((gameId != undefined) || (playerId != undefined)) {
+if ((gameId != undefined) || (playerId != undefined) || (gameMasterId != null)) {
 
   this.App = {};
 
   App.cable = ActionCable.createConsumer();
 
   App.games = App.cable.subscriptions.create(
-    { channel: 'GamesChannel', game_id: gameId, player_id: playerId },
+    { channel: 'GamesChannel', game_id: gameId, player_id: playerId, game_master_id: gameMasterId },
     { received: (data) => {
       console.log(data);
       if (data.message === "new player") {
@@ -79,23 +82,23 @@ function onNewRanking(data) {
 }
 
 function onFinalStarted(data) {
-  const editor = document.getElementById("editor");
-  if (editor) {
-    const content = document.querySelector(".ace_content");
-    const headToken = document.head.querySelector("[name=csrf-token]").content;
-    editor.addEventListener('keyup', function(event) {
-      const url = window.location.href + "/content";
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'X-CSRF-Token': headToken
-        },
-        credentials: 'same-origin',
-        body: JSON.stringify({ content: content.innerText })
-      });
-    });
-  }
+  // const editor = document.getElementById("editor");
+  // if (editor) {
+  //   const content = document.querySelector(".ace_content");
+  //   const headToken = document.head.querySelector("[name=csrf-token]").content;
+  //   editor.addEventListener('keyup', function(event) {
+  //     const url = window.location.href + "/content";
+  //     fetch(url, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         'X-CSRF-Token': headToken
+  //       },
+  //       credentials: 'same-origin',
+  //       body: JSON.stringify({ content: content.innerText })
+  //     });
+  //   });
+  // }
 }
 
 function onNewFinalContent(data) {
