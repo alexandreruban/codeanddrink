@@ -32,7 +32,7 @@ exercises:
       end
     template: >
       def hi
-        # TODO: Return "Hello, World!" string
+        # TODO: return "Hello, World!"
       end
     solution: >
       def hi
@@ -117,7 +117,7 @@ rounds:
   - id: 0
     game_id: 0
     exercise_id: 0
-    number_of_winners: 5
+    number_of_winners: 3
   - id: 1
     game_id: 0
     exercise_id: 1
