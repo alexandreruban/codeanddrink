@@ -28,6 +28,16 @@ class Round < ApplicationRecord
         }
       )
     }
+    # Broadcast to game master
+    ActionCable.server.broadcast "game_master_#{game.game_master.id}", {
+      message: "update players",
+      players_partial: ApplicationController.renderer.render(
+        partial: "players/players",
+        locals: {
+          players: game.players.order(created_at: :asc)
+        }
+      )
+    }
   end
 
   def stop
@@ -40,6 +50,16 @@ class Round < ApplicationRecord
       message: "round stopped",
       ranking_partial: ApplicationController.renderer.render(
         partial: "players/ranking_screen",
+        locals: {
+          players: game.players.order(created_at: :asc)
+        }
+      )
+    }
+    # Broadcast to game master
+    ActionCable.server.broadcast "game_master_#{game.game_master.id}", {
+      message: "update players",
+      players_partial: ApplicationController.renderer.render(
+        partial: "players/players",
         locals: {
           players: game.players.order(created_at: :asc)
         }
@@ -63,6 +83,16 @@ class Round < ApplicationRecord
         message: "new ranking",
         new_ranking_partial: ApplicationController.renderer.render(
           partial: "players/ranking_screen",
+          locals: {
+            players: game.players.order(created_at: :asc)
+          }
+        )
+      }
+      # Broadcast to game master
+      ActionCable.server.broadcast "game_master_#{game.game_master.id}", {
+        message: "update players",
+        players_partial: ApplicationController.renderer.render(
+          partial: "players/players",
           locals: {
             players: game.players.order(created_at: :asc)
           }
