@@ -39,9 +39,19 @@ if ((gameId != undefined) || (playerId != undefined) || (gameMasterId != null)) 
         onFinalStarted(data);
       } else if (data.message === "new final content") {
         onNewFinalContent(data);
+      } else if (data.message === "update players") {
+        onUpdatePlayers(data);
       }
     }
   });
+}
+
+function onUpdatePlayers(data) {
+  const playersContainer = document.getElementById("game-players");
+  if (playersContainer) {
+    playersContainer.innerHTML = data.players_partial
+    renderAllIdenticons();
+  }
 }
 
 function onNewPlayer(data) {
