@@ -76,6 +76,42 @@ exercises:
           return 0
         end
       end
+  - id: 2
+    title: Vowel count
+    rules: |
+      The goal is to implement a count_vowel method which takes one word as parameter.
+
+      The method should return the number of vowels in the given word.
+    specs:
+      require "attempt"
+
+      describe "The `count_vowels` method" do
+        it "should return a number" do
+          expect(count_vowels("wagon")).to be_a Numeric
+        end
+
+        it "should return 2 if the word is 'wagon'" do
+          expect(count_vowels("wagon")).to eq(2)
+        end
+
+        it "should return 4 if the word is 'wednesday'" do
+          expect(count_vowels("wednesday")).to eq(4)
+        end
+
+        it "should return 4 if the word is 'january'" do
+          expect(count_vowels("january")).to eq(4)
+        end
+      end
+    template: |
+      VOWELS = ['a','e','i','o','u','y']
+      def count_vowels(word)
+        # TODO: Implement the `count_vowel` method
+      end
+    solution: |
+      VOWELS = ['a','e','i','o','u','y']
+      def count_vowels(word)
+        word.split(//).select { |c| VOWELS.include? c }.count
+      end
 
 rounds:
   - id: 0
@@ -85,6 +121,10 @@ rounds:
   - id: 1
     game_id: 0
     exercise_id: 1
-    number_of_winners: 5
+    number_of_winners: 2
+  - id: 2
+    game_id: 0
+    exercise_id: 2
+    number_of_winners: 1
 
 
