@@ -4,22 +4,25 @@
 
 let gameId = undefined;
 let playerId = undefined;
+let gameMasterId = undefined;
 const gameContainer = document.getElementById("game");
 if (gameContainer != null) {
   gameId = gameContainer.dataset.currentGame;
   playerId = gameContainer.dataset.currentPlayer;
+  gameMasterId = gameContainer.dataset.currentGameMaster;
 }
 console.log("GameId:" + gameId)
 console.log("playerId:" + playerId)
+console.log("gameMasterId:" + gameMasterId)
 
-if ((gameId != undefined) || (playerId != undefined)) {
+if ((gameId != undefined) || (playerId != undefined) || (gameMasterId != null)) {
 
   this.App = {};
 
   App.cable = ActionCable.createConsumer();
 
   App.games = App.cable.subscriptions.create(
-    { channel: 'GamesChannel', game_id: gameId, player_id: playerId },
+    { channel: 'GamesChannel', game_id: gameId, player_id: playerId, game_master_id: gameMasterId },
     { received: (data) => {
       console.log(data);
       if (data.message === "new player") {

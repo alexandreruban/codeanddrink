@@ -52,7 +52,7 @@ class PlayersController < ApplicationController
   end
 
   def content
-    ActionCable.server.broadcast "game_#{@game.id}", {
+    ActionCable.server.broadcast "game_master_#{@game.game_master.id}", {
       message: "new final content",
       player_id: params[:id],
       content: params[:content]
