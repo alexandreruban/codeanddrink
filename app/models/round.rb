@@ -14,8 +14,9 @@ class Round < ApplicationRecord
   def start
     update(state: "running")
     game.players.where(status: "alive").update_all(status: "playing")
-    final = game.players.where.not(status: "defeated").count == 2;
-    ActionCable.server.broadcast "game_#{game.id}", {
+    not_defeated_players = game.players.where.not(status: "defeated")
+    final = not_defeated_players.count == 2
+    data = {
       message: "round started",
       game_partial: ApplicationController.renderer.render(
         partial: "players/game_screen",
@@ -28,6 +29,9 @@ class Round < ApplicationRecord
         }
       )
     }
+    not_defeated_players.each do |player|
+      ActionCable.server.broadcast "player_#{player.id}", data
+    end
     # Broadcast to game master
     ActionCable.server.broadcast "game_master_#{game.game_master.id}", {
       message: "update players",
