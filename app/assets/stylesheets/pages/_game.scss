@@ -15,6 +15,8 @@
     display: flex;
     justify-content:center;
     padding: 0px;
+    width: 100%;
+    flex-wrap: wrap;
   }
   li {
     list-style-type: none;
@@ -39,10 +41,11 @@
 
 .badge {
   border-radius: 50%;
-  background-color: $red;
+  background-color: $purple;
   padding: 4px 9px;
   display: block;
   width: 36px;
   margin: auto;
   font-size: 27px;
+  margin-top: 15px;
 }
