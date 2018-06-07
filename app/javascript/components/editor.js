@@ -39,7 +39,7 @@ function codescreen() {
         authentToken.value = headToken;
         input.value = editor.getValue();
         inputPlayer.value = game.dataset.currentPlayer;
-        form.submit();
+        document.getElementById("attempt-submit-btn").click();
       });
     }
     if (reset) {
