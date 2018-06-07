@@ -11,7 +11,7 @@
     <div class="navbar-wagon-right hidden-xs hidden-sm">
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <%= link_to "Games", "#",
+          <%= link_to "Start a game", "#",
           class: "navbar-wagon-item navbar-wagon-link", id: "navbar-games-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <% current_game_master.games.each do |game| %>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="navbar-wagon-item">
-        <%= link_to "Sidekiq", sidekiq_web_path, class: "navbar-wagon-item navbar-wagon-link"%>
+        <%= link_to "Settings", sidekiq_web_path, class: "navbar-wagon-item navbar-wagon-link"%>
       </div>
     </div>
     <!-- Avatar with dropdown menu -->
