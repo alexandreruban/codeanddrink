@@ -30,10 +30,14 @@ exercises:
           expect(hi()).to eq("Hello, World!")
         end
       end
-    template: >
+    template: |
+
+
       def hi
         # TODO: return "Hello, World!"
       end
+
+
     solution: >
       def hi
         return "Hello, World!"
@@ -64,10 +68,14 @@ exercises:
           expect(circle_area(-1)).to eq(0)
         end
       end
-    template: >
+    template: |
+
+
       def circle_area(radius)
         # TODO: Implement the `circle_area` method
       end
+
+
     solution: >
       def circle_area(radius)
         if radius > 0
@@ -103,10 +111,14 @@ exercises:
         end
       end
     template: |
+
+
       VOWELS = ['a','e','i','o','u','y']
       def count_vowels(word)
         # TODO: Implement the `count_vowel` method
       end
+
+
     solution: |
       VOWELS = ['a','e','i','o','u','y']
       def count_vowels(word)
