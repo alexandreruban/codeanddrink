@@ -1,4 +1,4 @@
- <div style="background-image: linear-gradient(-204deg, rgba(134,0,245,1) 36%, rgba(134,0,245,0.4) 61%), url('<%= image_path 'fond_purple.svg' %>');">
+ <div style="background-size: cover; background-image: url('<%= image_path 'screen_spectator.svg' %>');">
   <div class="container">
   <div id="game" data-current-game="<%= @game.id %>"></div>
   <div class="vertical-between">
@@ -20,7 +20,7 @@
               <h3>Join the game</h3>
               <p>Go to codeanddrink.fun</p>
               <p>Choose your username </p>
-              <p>Password: <%= @game.password %></p>
+              <p>Enter the game password: <%= @game.password %></p>
             </div>
         </div>
       </div>
