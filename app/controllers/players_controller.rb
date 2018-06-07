@@ -1,7 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_game
   before_action :authenticate_player, only: :show
-  skip_before_action :verify_authenticity_token, only: :content
 
   helper_method :current_player
 
