@@ -82,23 +82,23 @@ function onNewRanking(data) {
 }
 
 function onFinalStarted(data) {
-  const editor = document.getElementById("editor");
-  if (editor) {
-    const content = document.querySelector(".ace_content");
-    const headToken = document.head.querySelector("[name=csrf-token]").content;
-    editor.addEventListener('keyup', function(event) {
-      const url = window.location.href + "/content";
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'X-CSRF-Token': headToken
-        },
-        credentials: 'same-origin',
-        body: JSON.stringify({ content: content.innerText })
-      });
-    });
-  }
+  // const editor = document.getElementById("editor");
+  // if (editor) {
+  //   const content = document.querySelector(".ace_content");
+  //   const headToken = document.head.querySelector("[name=csrf-token]").content;
+  //   editor.addEventListener('keyup', function(event) {
+  //     const url = window.location.href + "/content";
+  //     fetch(url, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         'X-CSRF-Token': headToken
+  //       },
+  //       credentials: 'same-origin',
+  //       body: JSON.stringify({ content: content.innerText })
+  //     });
+  //   });
+  // }
 }
 
 function onNewFinalContent(data) {

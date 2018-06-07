@@ -14,6 +14,7 @@ class PlayersController < ApplicationController
     @attempt = Attempt.new
     @last_attempts = @round.attempts.where(player: @player)
     @last_attempt = @last_attempts.empty? ? nil : @last_attempts.last
+    @final = @game.players.where.not(status: "defeated").count == 2;
   end
 
   def new

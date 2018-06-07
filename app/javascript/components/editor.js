@@ -2,7 +2,8 @@ import "ace-builds";
 import "ace-builds/webpack-resolver";
 
 function codescreen() {
-  if (document.getElementById('editor')) {
+  const htmlEditor = document.getElementById('editor');
+  if (htmlEditor) {
     const editor = ace.edit("editor");
     editor.setTheme('ace/theme/monokai');
     editor.session.setMode("ace/mode/ruby");
@@ -14,6 +15,13 @@ function codescreen() {
         },
       readOnly: true // false if this command should not apply in readOnly mode
     });
+
+    let final = false;
+    const finalContainer = document.getElementById("final");
+    if (finalContainer != null) {
+      final = finalContainer.dataset.final === "true";
+    }
+    console.log("final:" + final);
 
     const game =  document.getElementById("game");
     const form = document.getElementById("new_attempt");
@@ -49,6 +57,23 @@ function codescreen() {
     } else {
       editor.setValue(last_attempt.innerText);
       editor.clearSelection();
+    }
+    if (final) {
+      console.log("final");
+      const content = htmlEditor.querySelector(".ace_content");
+      const headToken = document.head.querySelector("[name=csrf-token]").content;
+      htmlEditor.addEventListener('keyup', function(event) {
+        const url = window.location.href + "/content";
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'X-CSRF-Token': headToken
+          },
+          credentials: 'same-origin',
+          body: JSON.stringify({ content: content.innerText })
+        });
+      });
     }
   }
 }
