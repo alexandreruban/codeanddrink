@@ -71,8 +71,14 @@ function onRoundStarted(data) {
 
 function onAttempt(data) {
   const testsContainer = document.getElementById('tests');
+  const navItems = document.querySelectorAll('.nav-item');
+  const tabs = document.querySelectorAll('.tab-pane');
   if (testsContainer) {
     testsContainer.innerHTML = data.tests_partial;
+    navItems[0].classList.remove("active");
+    navItems[1].classList.add("active");
+    tabs[0].classList.remove("active");
+    tabs[1].classList.add("active");
     renderAllIdenticons();
   }
 }

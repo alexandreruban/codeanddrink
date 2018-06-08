@@ -1,21 +1,17 @@
 <div id="game" data-current-game="<%= @game.id%>" data-current-player="<%= current_player.id %>">
   <div id="game-frame">
     <% if @game.round_running? && @current_player.status == "playing" %>
-    <%= render 'game_screen',
-    round: @round,
-    attempt: @attempt,
-    last_attempt: @last_attempt,
-    exercise: @exercise,
-    final: @final
-    %>
+      <%= render 'game_screen',
+        round: @round,
+        attempt: @attempt,
+        last_attempt: @last_attempt,
+        exercise: @exercise,
+        final: @final
+      %>
     <% elsif @game.not_started? %>
-    <%= render 'welcome_screen',
-    players: @players
-    %>
+      <%= render 'welcome_screen', players: @players %>
     <% else %>
-    <%= render 'ranking_screen',
-    players: @players
-    %>
+      <%= render 'ranking_screen', players: @players %>
     <% end %>
   </div>
 </div>
