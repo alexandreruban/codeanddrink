@@ -24,6 +24,20 @@
   text-align: center;
 }
 
+#final-players {
+  ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  li {
+    list-style-type: none;
+  }
+  text-align: center;
+}
+
 #game-actions {
     padding-bottom: 40px;
     text-align: right;

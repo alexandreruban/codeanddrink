@@ -44,6 +44,34 @@ class GameMaster::RoundsController < GameMaster::BaseController
 
   def start
     @round.start
+
+    if @round.number_of_winners == 1
+
+      @final_players = @game.players.where(status: "playing").order(created_at: :asc);
+      @player0 = @final_players[0]
+      @player1 = @final_players[1]
+      @last_attempt0 = @round.attempts.where(player: @player0).last;
+      @last_attempt1 = @round.attempts.where(player: @player1).last;
+
+      ActionCable.server.broadcast "game_master_#{current_game_master.id}", {
+        message: "final started",
+        final_partial: ApplicationController.renderer.render(
+          partial: 'game_master/games/final',
+          locals: {
+            game: @game,
+            game_master: current_game_master,
+            exercise: @round.exercise,
+            players: @final_players,
+            player0: @player0,
+            player1:  @player1,
+            last_attempt0: @last_attempt0,
+            last_attempt1: @last_attempt1
+          }
+          )
+      }
+
+    end
+
     redirect_to game_master_game_rounds_path(@game)
   end
 
@@ -53,19 +81,9 @@ class GameMaster::RoundsController < GameMaster::BaseController
   end
 
   def final
-    @exercise = @round.exercise
     @final_players = @game.players.where(status: "playing");
     @player0 = @final_players[0]
     @player1 = @final_players[1]
-    @last_attempt0 = @round.attempts.where(player: @player0).last;
-    @last_attempt1 = @round.attempts.where(player: @player1).last;
-
-    ActionCable.server.broadcast "player_#{@player0.id}", {
-      message: "final started"
-    }
-    ActionCable.server.broadcast "player_#{@player1.id}", {
-      message: "final started"
-    }
   end
 
   private

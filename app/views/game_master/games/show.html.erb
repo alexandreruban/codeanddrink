@@ -1,54 +1,21 @@
  <div style="background-size: cover; background-image: url('<%= image_path 'screen_spectator.svg' %>');">
-  <div id="game" data-current-game="<%= @game.id %>" data-current-game-master="<%= current_game_master.id %>"></div>
-  <div class="container">
-  <div id="game" data-current-game="<%= @game.id %>"></div>
-  <div class="vertical-between">
-    <div class="row">
-      <div class="col-xs-4">
-        <div class="card">
-          <span class="badge">1</span>
-          <div id="game-info">
-            <h3>Connect to Wi-Fi</h3>
-            <p>Network: <%= @game.wifi_network %></p>
-            <p>Password: <%= @game.wifi_password %></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-4">
-        <div class="card">
-          <span class="badge">2</span>
-            <div id="game-info">
-              <h3>Join the Game</h3>
-              <p>Go to <strong>codeanddrink.fun</strong></p>
-              <p>Choose your username </p>
-              <p>Enter the game password: <strong><%= @game.password %></strong></p>
-            </div>
-        </div>
-      </div>
-      <div class="col-xs-4">
-        <div class="card">
-          <span class="badge">3</span>
-            <div id="game-info">
-              <h3><%= @game.title %></h3>
-              <p><strong>Wait for the game to start</strong></p>
-              <p><%= @game.description %></p>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="container">
-          <div id="game-players">
-          <%= render partial: 'players/players', locals: { players: @players } %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    <div class="col-xs-12">
-      <div id="game-actions">
-        <%= link_to "Start the round", game_master_game_rounds_path(@game), class: "button-lg button-green" %>
-      </div>
-    </div>
+  <div id="gamemaster-frame">
+    <% if @final_running %>
+      <%= render 'game_master/games/final',
+        game: @game,
+        game_master: current_game_master,
+        exercise: @exercise,
+        players: @final_players,
+        player0: @player0,
+        player1:  @player1,
+        last_attempt0: @last_attempt0,
+        last_attempt1: @last_attempt1
+    %>
+    <% else %>
+      <%= render 'game_master/games/welcome',
+        game: @game,
+        players: @players
+      %>
+    <% end %>
   </div>
 </div>

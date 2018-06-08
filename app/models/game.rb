@@ -17,4 +17,9 @@ class Game < ApplicationRecord
   def not_started?
     self.rounds.first.state == "not started"
   end
+
+  def final_running?
+    running_round = self.rounds.find_by_state("running")
+    running_round.nil? ? false : (running_round.number_of_winners == 1)
+  end
 end

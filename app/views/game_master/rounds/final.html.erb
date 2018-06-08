@@ -1,27 +1,27 @@
-<div class="container">
-  <div id="game" data-current-game="<%= @game.id %>" data-current-game-master="<%= current_game_master.id %>"  data-player-zero="<%= @player0.id %>" data-player-one="<%= @player1.id %>"></div>
-  <div id="template" style="display: none"><%= @exercise.template %></div>
-  <div id="last-attempt-0" style="display: none"><%= @last_attempt0.player_input unless @last_attempt0.nil? %></div>
-  <div id="last-attempt-1" style="display: none"><%= @last_attempt1.player_input unless @last_attempt1.nil? %></div>
-  <div class="row">
-    <div class="col-xs-6">
-      <div class="avatar">
-        <img id="<%= @player0.username %>" />
-        <p><%= @player0.username %></p>
-      </div>
-      <div id="editor-<%= @player0.id %>" class="editor">
+<div style="background-size: cover; background-image: url('<%= image_path 'screen_spectator.svg' %>');">
+  <div class="container">
+    <div id="game" data-current-game="<%= @game.id %>" data-current-game-master="<%= current_game_master.id %>"  data-player-zero="<%= @player0.id %>" data-player-one="<%= @player1.id %>"></div>
+    <div id="template" style="display: none"><%= @exercise.template %></div>
+    <div id="last-attempt-0" style="display: none"><%= @last_attempt0.player_input unless @last_attempt0.nil? %></div>
+    <div id="last-attempt-1" style="display: none"><%= @last_attempt1.player_input unless @last_attempt1.nil? %></div>
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="final-players">
+          <%= render 'players/players', players: @final_players %>
+        </div>
       </div>
     </div>
-    <div class="col-xs-6">
-      <div class="avatar">
-        <img id="<%= @player1.username %>" />
-        <p><%= @player1.username %></p>
+    <div class="row">
+      <div class="col-xs-6">
+        <div id="editor-<%= @player0.id %>" class="editor">
+        </div>
       </div>
-      <div id="editor-<%= @player1.id %>" class="editor">
+      <div class="col-xs-6">
+        <div id="editor-<%= @player1.id %>" class="editor">
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 
 
