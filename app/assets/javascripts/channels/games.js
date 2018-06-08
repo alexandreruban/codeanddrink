@@ -46,13 +46,6 @@ if ((gameId != undefined) || (playerId != undefined) || (gameMasterId != null)) 
   });
 }
 
-function onUpdatePlayers(data) {
-  const playersContainer = document.getElementById("game-players");
-  if (playersContainer) {
-    playersContainer.innerHTML = data.players_partial
-    renderAllIdenticons();
-  }
-}
 
 function onNewPlayer(data) {
   const playersContainer = document.getElementById('game-players');
@@ -97,26 +90,6 @@ function onNewRanking(data) {
   }
 }
 
-function onFinalStarted(data) {
-  // const editor = document.getElementById("editor");
-  // if (editor) {
-  //   const content = document.querySelector(".ace_content");
-  //   const headToken = document.head.querySelector("[name=csrf-token]").content;
-  //   editor.addEventListener('keyup', function(event) {
-  //     const url = window.location.href + "/content";
-  //     fetch(url, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         'X-CSRF-Token': headToken
-  //       },
-  //       credentials: 'same-origin',
-  //       body: JSON.stringify({ content: content.innerText })
-  //     });
-  //   });
-  // }
-}
-
 function onNewFinalContent(data) {
     const editor = document.getElementById("editor-" + data.player_id);
     if (editor) {
@@ -124,4 +97,26 @@ function onNewFinalContent(data) {
       aceEditor.setValue(data.content);
       aceEditor.clearSelection();
     }
+}
+
+function onUpdatePlayers(data) {
+  const playersContainer = document.getElementById("game-players");
+  if (playersContainer) {
+    playersContainer.innerHTML = data.players_partial
+    renderAllIdenticons();
+  }
+  const finalPlayersContainer = document.getElementById("final-players");
+  if (finalPlayersContainer) {
+    finalPlayersContainer.innerHTML = data.players_partial
+    renderAllIdenticons();
+  }
+}
+
+function onFinalStarted(data) {
+  const gameMasterFrame = document.getElementById("gamemaster-frame");
+  if (gameMasterFrame) {
+    gameMasterFrame.innerHTML = data.final_partial;
+    renderAllIdenticons();
+    window.finalscreens();
+  }
 }

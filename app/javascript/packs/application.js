@@ -4,6 +4,8 @@ import { finalscreens  } from '../components/final';
 
 window.codescreen = codescreen;
 codescreen();
+
+window.finalscreens = finalscreens;
 finalscreens();
 
 renderAllIdenticons();
