@@ -87,43 +87,90 @@ exercises:
   - id: 2
     title: Vowel count
     rules: |
-      The goal is to implement a count_vowel method which takes one word as parameter.
+      Return the number (count) of vowels in the given string.
 
-      The method should return the number of vowels in the given word.
+      We will consider a, e, i, o, and u as vowels for this Kata.
+
+      The input string will only consist of lower case letters and/or spaces.
     specs:
       require "attempt"
-
-      describe "The `count_vowels` method" do
+      describe "The `getCount` method" do
         it "should return a number" do
-          expect(count_vowels("wagon")).to be_a Numeric
+          expect(getCount("wagon")).to be_a Numeric
         end
-
         it "should return 2 if the word is 'wagon'" do
-          expect(count_vowels("wagon")).to eq(2)
+          expect(getCount("wagon")).to eq(2)
         end
-
         it "should return 4 if the word is 'wednesday'" do
-          expect(count_vowels("wednesday")).to eq(4)
+          expect(getCount("wednesday")).to eq(4)
         end
-
         it "should return 4 if the word is 'january'" do
-          expect(count_vowels("january")).to eq(4)
+          expect(getCount("january")).to eq(4)
         end
       end
     template: |
-
-
-      VOWELS = ['a','e','i','o','u','y']
-      def count_vowels(word)
-        # TODO: Implement the `count_vowel` method
+      def getCount(inputStr)
+        #your code here
       end
-
-
     solution: |
       VOWELS = ['a','e','i','o','u','y']
-      def count_vowels(word)
+      def getCount(word)
         word.split(//).select { |c| VOWELS.include? c }.count
       end
+  - id: 3
+    title: "Reduce but grow"
+    rules: |
+      Given and array of integers (x), return the result of multiplying the values together in order. Example:
+
+      [1, 2, 3] --> 6
+      
+      For the beginner, try to use the reduce method - it comes in very handy quite a lot so is a good one to know.
+      Array will not be empty.
+    specs: >
+      describe "Basic tests" do
+        Test.assert_equals(grow([1, 2, 3]), 6)
+        Test.assert_equals(grow([4, 1, 1, 1, 4]), 16)
+        Test.assert_equals(grow([2, 2, 2, 2, 2, 2]), 64)
+      end
+    template: |
+      def grow(x) 
+        # code here
+      end
+    solution: >
+      def grow(x) 
+        x.reduce(1) { |r, a| r * a }
+      end
+  - id: 4
+    title: "Sum of positive"
+    rules: |
+      You get an array of numbers, return the sum of all of the positives ones.
+
+      Example [1,-4,7,12] => 1 + 7 + 12 = 20
+
+      Note: if there is nothing to sum, the sum is default to 0.
+    specs: >
+      describe "positive_sum" do
+        it "works for some examples" do
+          Test.assert_equals positive_sum([1,2,3,4,5]), 15
+          Test.assert_equals positive_sum([1,-2,3,4,5]), 13
+          Test.assert_equals positive_sum([-1,2,3,4,-5]), 9
+        end
+        it "returns 0 when array is empty" do
+          Test.assert_equals positive_sum([]), 0
+        end
+        it "returns 0 when all elements are negative" do
+          Test.assert_equals positive_sum([-1,-2,-3,-4,-5]), 0
+        end
+      end
+    template: |
+      def positive_sum(arr)
+        # your code here
+      end
+    solution: >
+      def positive_sum(arr)
+        arr.reduce(0) { |r,s| r + (s > 0 ? s : 0)}
+      end
+
 
 rounds:
   - id: 0
