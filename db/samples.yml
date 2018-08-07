@@ -30,7 +30,7 @@ exercises:
       Just say "Hello, World!".
 
       Write a function that returns the string "Hello, World!".
-    specs: >
+    specs: |
       require "attempt"
 
       describe "The `hello_world` method" do
@@ -42,7 +42,7 @@ exercises:
       def hi
         #your code here
       end
-    solution: >
+    solution: |
       def hi
         return "Hello, World!"
       end
@@ -52,7 +52,7 @@ exercises:
       The goal is to implement a circle_area method which takes one parameter, radius, and returns the area of the circle of this given radius.
 
       As a reminder, here is the formula: A = PI * (r * r)
-    specs: >
+    specs: |
       require "attempt"
 
       describe "The `circle_area` method" do
@@ -76,7 +76,7 @@ exercises:
       def circle_area(radius)
          #your code here
       end
-    solution: >
+    solution: |
       def circle_area(radius)
         if radius > 0
           return Math::PI * radius ** 2
@@ -92,8 +92,9 @@ exercises:
       We will consider a, e, i, o, and u as vowels for this Kata.
 
       The input string will only consist of lower case letters and/or spaces.
-    specs:
+    specs: >
       require "attempt"
+
       describe "The `getCount` method" do
         it "should return a number" do
           expect(getCount("wagon")).to be_a Numeric
@@ -101,21 +102,20 @@ exercises:
         it "should return 2 if the word is 'wagon'" do
           expect(getCount("wagon")).to eq(2)
         end
-        it "should return 4 if the word is 'wednesday'" do
-          expect(getCount("wednesday")).to eq(4)
+        it "should return 4 if the word is 'clarification'" do
+          expect(getCount("clarification")).to eq(6)
         end
-        it "should return 4 if the word is 'january'" do
-          expect(getCount("january")).to eq(4)
+        it "should return 5 if the word is 'abracadabra'" do
+          expect(getCount("abracadabra")).to eq(5)
         end
       end
     template: |
-      def getCount(inputStr)
+      def getCount(word)
         #your code here
       end
     solution: |
-      VOWELS = ['a','e','i','o','u','y']
       def getCount(word)
-        word.split(//).select { |c| VOWELS.include? c }.count
+        word.scan(/[aeiou]/i).size
       end
   - id: 3
     title: Reduce but grow
@@ -126,11 +126,19 @@ exercises:
       
       For the beginner, try to use the reduce method - it comes in very handy quite a lot so is a good one to know.
       Array will not be empty.
-    specs: >
-      describe "Basic tests" do
-        Test.assert_equals(grow([1, 2, 3]), 6)
-        Test.assert_equals(grow([4, 1, 1, 1, 4]), 16)
-        Test.assert_equals(grow([2, 2, 2, 2, 2, 2]), 64)
+    specs: |
+      require "attempt"
+
+      describe "The `grow` method" do
+        it "should return 6" do
+          expect(grow([1, 2, 3])).to eq(6)
+        end
+        it "should return 16" do
+          expect(grow([4, 1, 1, 1, 4])).to eq(16)
+        end
+        it "should return 64" do
+          expect(grow([2, 2, 2, 2, 2, 2])).to eq(64)
+        end
       end
     template: |
       def grow(x) 
@@ -148,25 +156,31 @@ exercises:
       Example [1,-4,7,12] => 1 + 7 + 12 = 20
 
       Note: if there is nothing to sum, the sum is default to 0.
-    specs: >
+    specs: |
+      require "attempt"
+      
       describe "positive_sum" do
-        it "works for some examples" do
-          Test.assert_equals positive_sum([1,2,3,4,5]), 15
-          Test.assert_equals positive_sum([1,-2,3,4,5]), 13
-          Test.assert_equals positive_sum([-1,2,3,4,-5]), 9
+        it "returns 15 for [1,2,3,4,5]" do
+          expect(positive_sum([1,2,3,4,5])).to eq(15)
+        end
+        it "returns 13 for [1,-2,3,4,5]" do
+          expect(positive_sum([1,-2,3,4,5])).to eq(13)
+        end
+        it "returns 9 for [-1,2,3,4,-5]" do
+          expect(positive_sum([-1,2,3,4,-5])).to eq(9)
         end
         it "returns 0 when array is empty" do
-          Test.assert_equals positive_sum([]), 0
+          expect(positive_sum([])).to eq(0)
         end
         it "returns 0 when all elements are negative" do
-          Test.assert_equals positive_sum([-1,-2,-3,-4,-5]), 0
+          expect(positive_sum([-1,-2,-3,-4,-5])).to eq(0)
         end
       end
     template: |
       def positive_sum(arr)
         #your code here
       end
-    solution: >
+    solution: |
       def positive_sum(arr)
         arr.reduce(0) { |r,s| r + (s > 0 ? s : 0)}
       end
@@ -174,41 +188,32 @@ exercises:
     title: Even or Odd
     rules: |
       Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
-    specs: >
+    specs: |
+      require "attempt"
+
       describe "even_or_odd" do
-        Test.assert_equals(even_or_odd(2), "Even")
-        Test.assert_equals(even_or_odd(0), "Even")
-        Test.assert_equals(even_or_odd(7), "Odd")
-        Test.assert_equals(even_or_odd(1), "Odd")
+        it "returns Even for 2" do
+          expect(even_or_odd(2)).to eq("Even")
+        end
+        it "returns Even for 0" do
+          expect(even_or_odd(0)).to eq("Even")
+        end
+        it "returns Odd for 7" do
+          expect(even_or_odd(7)).to eq("Odd")
+        end
+        it "returns Odd for 1" do
+          expect(even_or_odd(1)).to eq("Odd")
+        end
       end
     template: |
       def even_or_odd(number)
         #your code here
       end
-    solution: >
+    solution: |
       def even_or_odd(number)
         number % 2 ==0 ? "Even" : "Odd"
       end
   - id: 6
-    title: Even or Odd
-    rules: |
-      Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
-    specs: >
-      describe "even_or_odd" do
-        Test.assert_equals(even_or_odd(2), "Even")
-        Test.assert_equals(even_or_odd(0), "Even")
-        Test.assert_equals(even_or_odd(7), "Odd")
-        Test.assert_equals(even_or_odd(1), "Odd")
-      end
-    template: |
-      def even_or_odd(number)
-        #your code here
-      end
-    solution: >
-      def even_or_odd(number)
-        number % 2 ==0 ? "Even" : "Odd"
-      end
-  - id: 7
     title: Sum without highest and lowest number
     rules: |
       Sum all the numbers of the array (in F# and Haskell you get a list) except the highest and the lowest element (the value, not the index!).
@@ -223,32 +228,34 @@ exercises:
       Note:In C++ instead null an empty vector is used. In C there is no null. ;-) 
 
       -- There's no null in Haskell, therefore Maybe [Int] is used. Nothing represents null.  
-    specs: >
-      Test.describe("Basic tests") do
-        Test.it("nil or Empty") do
-          Test.assert_equals(sum_array(nil), 0)
-          Test.assert_equals(sum_array([]), 0)
+    specs: |
+      require "attempt"
+
+      describe "Basic tests" do
+        it "nil or Empty" do
+          expect(sum_array(nil)).to eq(0)
+          expect(sum_array([])).to eq(0)
         end
-        Test.it("Only one Element") do
-          Test.assert_equals(sum_array([3]), 0)
-          Test.assert_equals(sum_array([-3]), 0)
+        it "Only one Element" do
+          expect(sum_array([3]).to eq(0)
+          expect(sum_array([-3]).to eq(0)
         end
-        Test.it("Only two Element") do
-          Test.assert_equals(sum_array([ 3, 5]), 0)
-          Test.assert_equals(sum_array([-3, -5]), 0)
+        it "Only two Element" do
+          expect(sum_array([ 3, 5])).to eq(0)
+          expect(sum_array([-3, -5])).to eq(0)
         end
-        Test.it("Real Tests") do
-          Test.assert_equals(sum_array([6, 2, 1, 8, 10]), 16)
-          Test.assert_equals(sum_array([6, 0, 1, 10, 10]), 17)
-          Test.assert_equals(sum_array([-6, -20, -1, -10, -12]), -28)
-          Test.assert_equals(sum_array([-6, 20, -1, 10, -12]), 3)
+        it "Real Tests" do
+          expect(sum_array([6, 2, 1, 8, 10])).to eq(16)
+          expect(sum_array([6, 0, 1, 10, 10]).to eq(17)
+          expect(sum_array([-6, -20, -1, -10, -12])).to eq(-28)
+          expect(sum_array([-6, 20, -1, 10, -12])).to eq(3)
         end
       end
     template: |
       def sum_array(arr)
         #your code here
       end
-    solution: >
+    solution: |
       def sum_array(arr)
         if arr.kind_of?(Array) and arr.length > 2
           arr.inject(:+) - arr.min - arr.max
@@ -256,7 +263,7 @@ exercises:
           0
         end
       end
-  - id: 8
+  - id: 7
     title: Opposite number
     rules: |
       Very simple, given a number, find its opposite.
@@ -268,19 +275,29 @@ exercises:
       -34: 34
 
       But can you do it in 1 line of code and without any conditionals?
-    specs: >
-      describe "even_or_odd" do
-        Test.assert_equals(opposite(1), -1, msg = nil)
+    specs: |
+      require "attempt"
+
+      describe "opposite" do
+        it "should return -1" do
+          expect(opposite(1)).to eq(-1)
+        end
+        it "should return 3" do
+          expect(opposite(-3)).to eq(3)
+        end
+        it "should return 0" do
+          expect(opposite(0)).to eq(0)
+        end
       end
     template: |
       def opposite n
         #your code here
       end
-    solution: >
+    solution: |
       def opposite n
         -n
       end
-  - id: 9
+  - id: 8
     title: Stop gninnipS My sdroW!
     rules: |
       Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
@@ -290,15 +307,25 @@ exercises:
       spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" 
       spinWords( "This is a test") => returns "This is a test" 
       spinWords( "This is another test" )=> returns "This is rehtona test"
-    specs: >
-      describe "even_or_odd" do
-        Test.assert_equals(spinWords("Hey fellow warriors"), "Hey wollef sroirraw");
+    specs: |
+      require "attempt"
+
+      describe "spinWords" do
+        it "should return ..." do
+          expect(spinWords("Hey fellow warriors")).to eq("Hey wollef sroirraw")
+        end
+        it "should return ..." do
+          expect(spinWords("All you need is code")).to eq("All you need is code")
+        end
+        it "should return ..." do
+          expect(spinWords("Do not forget your flashcards")).to eq("Do not tegrof your sdrachsalf")
+        end
       end
     template: |
       def spinWords(string)
         #your code here
       end
-    solution: >
+    solution: |
       def spinWords(string)
         #your code here
       end
@@ -318,7 +345,7 @@ rounds:
     number_of_winners: 1
   - id: 3
     game_id: 1
-    exercise_id: 6
+    exercise_id: 5
     number_of_winners: 20
   - id: 4
     game_id: 1
@@ -327,18 +354,14 @@ rounds:
   - id: 5
     game_id: 1
     exercise_id: 2
-    number_of_winners: 10
+    number_of_winners: 5
   - id: 6
     game_id: 1
     exercise_id: 7
-    number_of_winners: 5
+    number_of_winners: 2
   - id: 7
     game_id: 1
     exercise_id: 8
-    number_of_winners: 2
-  - id: 8
-    game_id: 1
-    exercise_id: 9
     number_of_winners: 1
 
 
