@@ -18,7 +18,7 @@ games:
     wifi_network: "Le Wagon"
     wifi_password: "allyouneediscode"
     starts_at: "2018-08-10T17:30:30+02:00"
-    password: "batch177"
+    password: "flashcard"
     game_master_id: 0
 
 exercises:
@@ -311,13 +311,13 @@ exercises:
       require "attempt"
 
       describe "spinWords" do
-        it "should return ..." do
+        it "should return 'Hey wollef sroirraw'" do
           expect(spinWords("Hey fellow warriors")).to eq("Hey wollef sroirraw")
         end
-        it "should return ..." do
+        it "should return 'All you need is code'" do
           expect(spinWords("All you need is code")).to eq("All you need is code")
         end
-        it "should return ..." do
+        it "should return 'Do not tegrof your sdrachsalf'" do
           expect(spinWords("Do not forget your flashcards")).to eq("Do not tegrof your sdrachsalf")
         end
       end
@@ -327,7 +327,16 @@ exercises:
       end
     solution: |
       def spinWords(string)
-        #your code here
+        ret = []
+        words = string.split(" ");
+        words.each do |word|
+          if word.length < 5
+            ret << word
+          else
+            ret << word.split("").reverse.join("")
+          end
+        end
+        return ret.join(" ")
       end
 
 rounds:
