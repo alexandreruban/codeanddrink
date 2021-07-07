@@ -12,17 +12,25 @@ games:
     starts_at: "2018-05-29T13:32:34+02:00"
     password: "batch145"
     game_master_id: 0
+  - id: 1
+    title: "Mid-Batch Party"
+    description: "First code then drink! Whatever..."
+    wifi_network: "Le Wagon"
+    wifi_password: "allyouneediscode"
+    starts_at: "2018-08-10T17:30:30+02:00"
+    password: "flashcard"
+    game_master_id: 0
 
 exercises:
   - id: 0
-    title: "Hello World"
+    title: Hello World
     rules: |
       The classical introductory exercise.
 
       Just say "Hello, World!".
 
       Write a function that returns the string "Hello, World!".
-    specs: >
+    specs: |
       require "attempt"
 
       describe "The `hello_world` method" do
@@ -31,24 +39,20 @@ exercises:
         end
       end
     template: |
-
-
       def hi
-        # TODO: return "Hello, World!"
+        #your code here
       end
-
-
-    solution: >
+    solution: |
       def hi
         return "Hello, World!"
       end
   - id: 1
-    title: "Circle Area"
+    title: Circle Area
     rules: |
       The goal is to implement a circle_area method which takes one parameter, radius, and returns the area of the circle of this given radius.
 
       As a reminder, here is the formula: A = PI * (r * r)
-    specs: >
+    specs: |
       require "attempt"
 
       describe "The `circle_area` method" do
@@ -69,14 +73,10 @@ exercises:
         end
       end
     template: |
-
-
       def circle_area(radius)
-        # TODO: Implement the `circle_area` method
+         #your code here
       end
-
-
-    solution: >
+    solution: |
       def circle_area(radius)
         if radius > 0
           return Math::PI * radius ** 2
@@ -87,42 +87,256 @@ exercises:
   - id: 2
     title: Vowel count
     rules: |
-      The goal is to implement a count_vowel method which takes one word as parameter.
+      Return the number (count) of vowels in the given string.
 
-      The method should return the number of vowels in the given word.
-    specs:
+      We will consider a, e, i, o, and u as vowels for this Kata.
+
+      The input string will only consist of lower case letters and/or spaces.
+    specs: >
       require "attempt"
 
-      describe "The `count_vowels` method" do
+      describe "The `getCount` method" do
         it "should return a number" do
-          expect(count_vowels("wagon")).to be_a Numeric
+          expect(getCount("wagon")).to be_a Numeric
         end
-
         it "should return 2 if the word is 'wagon'" do
-          expect(count_vowels("wagon")).to eq(2)
+          expect(getCount("wagon")).to eq(2)
         end
-
-        it "should return 4 if the word is 'wednesday'" do
-          expect(count_vowels("wednesday")).to eq(4)
+        it "should return 4 if the word is 'clarification'" do
+          expect(getCount("clarification")).to eq(6)
         end
-
-        it "should return 4 if the word is 'january'" do
-          expect(count_vowels("january")).to eq(4)
+        it "should return 5 if the word is 'abracadabra'" do
+          expect(getCount("abracadabra")).to eq(5)
         end
       end
     template: |
-
-
-      VOWELS = ['a','e','i','o','u','y']
-      def count_vowels(word)
-        # TODO: Implement the `count_vowel` method
+      def getCount(word)
+        #your code here
       end
-
-
     solution: |
-      VOWELS = ['a','e','i','o','u','y']
-      def count_vowels(word)
-        word.split(//).select { |c| VOWELS.include? c }.count
+      def getCount(word)
+        word.scan(/[aeiou]/i).size
+      end
+  - id: 3
+    title: Reduce but grow
+    rules: |
+      Given and array of integers (x), return the result of multiplying the values together in order. Example:
+
+      [1, 2, 3] --> 6
+      
+      For the beginner, try to use the reduce method - it comes in very handy quite a lot so is a good one to know.
+      Array will not be empty.
+    specs: |
+      require "attempt"
+
+      describe "The `grow` method" do
+        it "should return 6" do
+          expect(grow([1, 2, 3])).to eq(6)
+        end
+        it "should return 16" do
+          expect(grow([4, 1, 1, 1, 4])).to eq(16)
+        end
+        it "should return 64" do
+          expect(grow([2, 2, 2, 2, 2, 2])).to eq(64)
+        end
+      end
+    template: |
+      def grow(x) 
+        #your code here
+      end
+    solution: >
+      def grow(x) 
+        x.reduce(1) { |r, a| r * a }
+      end
+  - id: 4
+    title: Sum of positive
+    rules: |
+      You get an array of numbers, return the sum of all of the positives ones.
+
+      Example [1,-4,7,12] => 1 + 7 + 12 = 20
+
+      Note: if there is nothing to sum, the sum is default to 0.
+    specs: |
+      require "attempt"
+      
+      describe "positive_sum" do
+        it "returns 15 for [1,2,3,4,5]" do
+          expect(positive_sum([1,2,3,4,5])).to eq(15)
+        end
+        it "returns 13 for [1,-2,3,4,5]" do
+          expect(positive_sum([1,-2,3,4,5])).to eq(13)
+        end
+        it "returns 9 for [-1,2,3,4,-5]" do
+          expect(positive_sum([-1,2,3,4,-5])).to eq(9)
+        end
+        it "returns 0 when array is empty" do
+          expect(positive_sum([])).to eq(0)
+        end
+        it "returns 0 when all elements are negative" do
+          expect(positive_sum([-1,-2,-3,-4,-5])).to eq(0)
+        end
+      end
+    template: |
+      def positive_sum(arr)
+        #your code here
+      end
+    solution: |
+      def positive_sum(arr)
+        arr.reduce(0) { |r,s| r + (s > 0 ? s : 0)}
+      end
+  - id: 5
+    title: Even or Odd
+    rules: |
+      Create a function that takes an integer as an argument and returns "Even" for even numbers or "Odd" for odd numbers.
+    specs: |
+      require "attempt"
+
+      describe "even_or_odd" do
+        it "returns Even for 2" do
+          expect(even_or_odd(2)).to eq("Even")
+        end
+        it "returns Even for 0" do
+          expect(even_or_odd(0)).to eq("Even")
+        end
+        it "returns Odd for 7" do
+          expect(even_or_odd(7)).to eq("Odd")
+        end
+        it "returns Odd for 1" do
+          expect(even_or_odd(1)).to eq("Odd")
+        end
+      end
+    template: |
+      def even_or_odd(number)
+        #your code here
+      end
+    solution: |
+      def even_or_odd(number)
+        number % 2 ==0 ? "Even" : "Odd"
+      end
+  - id: 6
+    title: Sum without highest and lowest number
+    rules: |
+      Sum all the numbers of the array (in F# and Haskell you get a list) except the highest and the lowest element (the value, not the index!).
+      (The highest/lowest element is respectively only one element at each edge, even if there are more than one with the same value!)
+
+      Example:
+
+      { 6, 2, 1, 8, 10 } => 16
+      { 1, 1, 11, 2, 3 } => 6
+
+      If array is empty, null or None, or if only 1 Element exists, return 0.
+      Note:In C++ instead null an empty vector is used. In C there is no null. ;-) 
+
+      -- There's no null in Haskell, therefore Maybe [Int] is used. Nothing represents null.  
+    specs: |
+      require "attempt"
+
+      describe "Basic tests" do
+        it "nil or Empty" do
+          expect(sum_array(nil)).to eq(0)
+          expect(sum_array([])).to eq(0)
+        end
+        it "Only one Element" do
+          expect(sum_array([3])).to eq(0)
+          expect(sum_array([-3])).to eq(0)
+        end
+        it "Only two Element" do
+          expect(sum_array([ 3, 5])).to eq(0)
+          expect(sum_array([-3, -5])).to eq(0)
+        end
+        it "Real Tests" do
+          expect(sum_array([6, 2, 1, 8, 10])).to eq(16)
+          expect(sum_array([6, 0, 1, 10, 10])).to eq(17)
+          expect(sum_array([-6, -20, -1, -10, -12])).to eq(-28)
+          expect(sum_array([-6, 20, -1, 10, -12])).to eq(3)
+        end
+      end
+    template: |
+      def sum_array(arr)
+        #your code here
+      end
+    solution: |
+      def sum_array(arr)
+        if arr.kind_of?(Array) and arr.length > 2
+          arr.inject(:+) - arr.min - arr.max
+        else
+          0
+        end
+      end
+  - id: 7
+    title: Opposite number
+    rules: |
+      Very simple, given a number, find its opposite.
+
+      Examples:
+
+      1: -1
+      14: -14
+      -34: 34
+
+      But can you do it in 1 line of code and without any conditionals?
+    specs: |
+      require "attempt"
+
+      describe "opposite" do
+        it "should return -1" do
+          expect(opposite(1)).to eq(-1)
+        end
+        it "should return 3" do
+          expect(opposite(-3)).to eq(3)
+        end
+        it "should return 0" do
+          expect(opposite(0)).to eq(0)
+        end
+      end
+    template: |
+      def opposite n
+        #your code here
+      end
+    solution: |
+      def opposite n
+        -n
+      end
+  - id: 8
+    title: Stop gninnipS My sdroW!
+    rules: |
+      Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+
+      Examples:
+
+      spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" 
+      spinWords( "This is a test") => returns "This is a test" 
+      spinWords( "This is another test" )=> returns "This is rehtona test"
+    specs: |
+      require "attempt"
+
+      describe "spinWords" do
+        it "should return 'Hey wollef sroirraw'" do
+          expect(spinWords("Hey fellow warriors")).to eq("Hey wollef sroirraw")
+        end
+        it "should return 'All you need is code'" do
+          expect(spinWords("All you need is code")).to eq("All you need is code")
+        end
+        it "should return 'Do not tegrof your sdrachsalf'" do
+          expect(spinWords("Do not forget your flashcards")).to eq("Do not tegrof your sdrachsalf")
+        end
+      end
+    template: |
+      def spinWords(string)
+        #your code here
+      end
+    solution: |
+      def spinWords(string)
+        ret = []
+        words = string.split(" ");
+        words.each do |word|
+          if word.length < 5
+            ret << word
+          else
+            ret << word.split("").reverse.join("")
+          end
+        end
+        return ret.join(" ")
       end
 
 rounds:
@@ -137,6 +351,26 @@ rounds:
   - id: 2
     game_id: 0
     exercise_id: 2
+    number_of_winners: 1
+  - id: 3
+    game_id: 1
+    exercise_id: 5
+    number_of_winners: 20
+  - id: 4
+    game_id: 1
+    exercise_id: 4
+    number_of_winners: 15
+  - id: 5
+    game_id: 1
+    exercise_id: 2
+    number_of_winners: 5
+  - id: 6
+    game_id: 1
+    exercise_id: 7
+    number_of_winners: 2
+  - id: 7
+    game_id: 1
+    exercise_id: 8
     number_of_winners: 1
 
 
